@@ -1,0 +1,24 @@
+{
+  "name": "gobhash",
+  "version": "1.0.0",
+  "description": "Megaproyecto UVG 2017",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fitocs452/GobHash.git"
+  },
+  "keywords": [
+    "AngularJS",
+    "OpenData",
+    "UVG"
+  ],
+  "author": "Adolfo Morales",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fitocs452/GobHash/issues"
+  },
+  "homepage": "https://github.com/fitocs452/GobHash#readme"
+}
