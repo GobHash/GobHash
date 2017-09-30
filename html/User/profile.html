@@ -1,0 +1,29 @@
+<div class="col-md-6 col-md-offset-3">
+    <h2>Profile</h2>
+    <form name="form" ng-submit="vm.uploadCurrentUserProfile()" role="form">
+        <div class="form-group">
+            <div>Imagen de Perfil:</div>
+            <div><img ng-src="{{vm.user.profileImage}}" /></div>
+
+            <div>Recorta tu imagen:</div>
+            <div class="cropArea"><div ng-hide="vm.myCroppedImage">Select an image file: <input type="file" id="fileInput" /></div>    
+            <ui-cropper image="vm.myImage" area-type="circle" chargement="'Loading'" result-image="vm.user.profileImage" canvas-scalemode="true"></ui-cropper>
+            </div>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error': form.email.$dirty && form.email.$error.required }">
+            <label for="email">Email</label>
+            <input ng-pattern="vm.emailRegex" type="email" name="email" id="email" class="form-control" ng-model="vm.user.email" required />
+            <span ng-show="form.email.$dirty && form.email.$error.required" class="help-block">Ingresa tu correo</span>
+            <span ng-show="form.email.$dirty && form.email.$error.pattern" class="help-block">Correo incorrecto</span>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error': form.biography.$dirty && form.biography.$error.required }">
+            <label for="username">Biografia</label>
+            <input type="text" name="biography" id="Text1" class="form-control" ng-model="vm.user.biography" />
+            <span ng-show="form.biography.$dirty && form.biography.$error.required" class="help-block">Escribe tu biografia</span>
+        </div>
+        <div class="form-actions">
+            <button type="submit" ng-disabled="form.$invalid || vm.dataLoading" class="btn btn-primary">Actualizar</button>
+            <img ng-if="vm.dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+        </div>
+    </form>
+</div>
