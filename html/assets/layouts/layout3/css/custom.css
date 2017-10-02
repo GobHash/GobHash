@@ -1,0 +1,252 @@
+/* here you can put your own css to customize and override the theme */
+*{ box-sizing: border-box; }
+
+html,body{
+  height: 100%;
+}
+
+
+
+/* Heights */
+.height-100-percent{ height: 100%; }
+
+/* Fonts */
+.font-bold{ font-weight: 700; }
+.font-size-m { font-size: 1em; }
+.font-size-l { font-size: 2em; }
+.font-size-xl{ font-size: 2.5em; }
+
+/* Font color */
+.font-color-black,
+.font-color-black:active,
+.font-color-black:focus {
+  color: #000;
+}
+
+/* Float */
+.float-left{ float: left; }
+
+/* Borders */
+.border-red{  border: 1px solid red; }
+.border-blue{  border: 1px solid blue; }
+.border-black { border: 1px solid black; }
+.border-none{ border: none; }
+/* Background */
+.background-orange{  background-color: #ffa10e; }
+.background-transparent{ background-color: transparent; }
+
+
+.btn-transparent,
+.btn-transparent:hover,
+.btn-transparent:active,
+.btn-transparent:active{
+  background-color: transparent !important;
+  border: none !important;
+}
+
+/* Margins */
+.margin-top-10{ margin-top: 10px; }
+.margin-top-20{ margin-top: 20px; }
+.margin-top-30{ margin-top: 30px; }
+.margin-top-40{ margin-top: 40px; }
+.margin-top-50{ margin-top: 50px; }
+
+
+/* Text decoration */
+.text-decoration-none{ text-decoration: none !important; }
+.container-fluid{
+  height: 100%;
+}
+.container-fluid .row {
+  margin: 0;
+}
+
+.login-modal-button{
+  height: 3em;
+}
+
+.globhash-row1{
+  background-color: #646464;
+  color: #ffffff;
+  height: 20%;
+}
+.globhash-title{ font-size: 8em; }
+.globhash-title span {  color: #ffa10e;}
+.globhash-text-orange {  color: #ffa10e;}
+
+.globhash-subtitle-1{
+  font-size: 1.2em;
+  margin: 10px 0 0 0;
+}
+.globhash-subtitle-2{
+  font-size: 1.2em;
+  margin: 10px 0 10px 0;
+}
+/* Middle section*/
+.globhash-row2{
+  height: 50%;
+  background-color: #d0d0d0;
+}
+
+.second-row-text-container{ position: relative; height: 100%; }
+.second-row-text-inner-item{
+  display: flex;
+  font-size: 3em;
+  height: 100%;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+.flex-vertical-horizontal-center{
+  display: flex;
+  height: 100%;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+.second-row-text-inner-item p, .register-info p{
+  margin: 10px 0;
+}
+
+.register-info-box{
+  background-color: #ffa10e;
+  border: 3px solid black;
+  border-radius: 10% !important;
+}
+
+.mas-populares-box{
+  background-color: #ffa10e;
+  bottom: 0px;
+  font-weight: 700;
+  left: 0;
+  padding: 0 1em;
+  position: absolute;
+
+}
+
+
+.globhash-row3{
+  background-color: #ffffff;
+  height: 30%;
+}
+.globhash-row3 .inner-section{
+  height: 100%;
+}
+
+/* Bootstrap fixes*/
+.no-margin{ margin: 0;   }
+.no-padding{ padding: 0; }
+
+/* This two classes are used to hide or show the different login / registration / forgotten password forms*/
+.hidden-element{  display: none !important;  }
+.visible-element{  display: block !important;  }
+
+/* MEDIA QUERIES */
+
+/*==========  Non-Mobile First Method  ==========*/
+
+/* Large Devices, Wide Screens */
+@media only screen and (max-width : 1200px) {
+  .globhash-row1{
+    height: auto;
+  }
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (max-width : 992px) {
+  .globhash-row1{  height: auto;  }
+  /*.globhash-row2{  height: auto;  }*/
+  /*.globhash-row3{  height: auto;  }*/
+
+  .second-row-text-inner-item{
+    font-size: 2.5em;
+  }
+  .second-row-text-inner-item p{
+    margin: 5px 0 5px 0;
+  }
+}
+
+/* Small Devices, Tablets */
+@media only screen and (max-width : 768px) {
+  .globhash-row1{  height: auto;  }
+  /*!*.globhash-row2{  height: auto;  }*!*/
+  /*.globhash-row3{  height: auto;  }*/
+
+  .globhash-title{
+    font-size: 5em;
+  }
+
+  .second-row-text-inner-item{
+    font-size: 1.5em;
+  }
+
+
+}
+
+/* Extra Small Devices, Phones */
+@media only screen and (max-width : 480px) {
+  .globhash-row1{  height: auto;  }
+  /*.globhash-row2{  height: auto;  }*/
+  .globhash-row3{  height: 50%;  }
+
+  .globhash-title{
+    font-size: 3em;
+  }
+
+  .globhash-subtitle-1{
+    font-size: 1em;
+  }
+
+  .mas-populares-box{
+    font-size: 1em;
+    text-align: center;
+    width: 100%;
+  }
+
+  .globhash-subtitle-2{ font-size: 1em}
+}
+
+/* Custom, iPhone Retina */
+@media only screen and (max-width : 320px) {
+  .globhash-row1{  height: auto;  }
+  /*.globhash-row2{  height: auto;  }*/
+  .globhash-row3{  height: 50%;  }
+
+  .mas-populares-box{
+    font-size: 1em;
+    text-align: center;
+    width: 100%;
+  }
+
+  .globhash-title{
+    font-size: 3em;
+  }
+
+  .globhash-subtitle-2{ font-size: 1em}
+}
+
+.page-header .page-header-menu {
+  background: #646464 !important;
+}
+
+.page-content {
+  background: #d0d0d0 !important;
+}
+
+.page-head {
+  background: #d0d0d0 !important;
+}
+
+.page-header-top {
+  background: #646464 !important;
+}
+
+.btn-menu {
+  background: #ffa10e !important;
+  color: white;
+}
+
+li.active.under{
+  border-bottom: 4px solid #ffa10e !important;
+}
+
