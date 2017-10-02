@@ -3,44 +3,41 @@
 
     angular
         // .module('gobhash', ['ngRoute', 'ngCookies', 'uiCropper'])
-        .module('gobhash', ['ngRoute', 'ngCookies'])
+        // .module('gobhash', ['ngRoute', 'ngCookies', 'ui.router'])
+        .module('gobhash', ['ngRoute', 'ui.router', 'ngCookies', 'angularModalService', 'ui.bootstrap', 'chart.js'])
         .config(config)
         .run(run);
 
-    config.$inject = ['$routeProvider', '$locationProvider'];
-    function config($routeProvider, $locationProvider) {
-        $routeProvider
-            .when('/', {
+    config.$inject = ['$stateProvider', '$urlRouterProvider'];
+    function config($stateProvider, $urlRouterProvider) {
+        $stateProvider
+            .state('home', {
+                url: '/',
                 controller: 'HomeController',
-                templateUrl: 'html/Home/home.html',
-                controllerAs: 'vm'
+                controllerAs: 'vm',
+                templateUrl: 'html/Home/home.html'
             })
 
-            .when('/login', {
+            .state('login', {
+                url: '/login',
                 controller: 'LoginController',
-                templateUrl: 'html/User/login.html',
-                controllerAs: 'vm'
+                controllerAs: 'vm',
+                templateUrl: 'html/User/login.html'
             })
 
-            .when('/register', {
+            .state('register', {
+                url: '/register',
                 controller: 'RegisterController',
-                templateUrl: 'html/User/register.html',
-                controllerAs: 'vm'
+                controllerAs: 'vm',
+                templateUrl: 'html/User/register.html'
             })
 
-            .when('/recover', {
+            .state('recover', {
+                url: '/recover',
                 controller: 'RecoverController',
-                templateUrl: 'html/User/recover_password.html',
-                controllerAs: 'vm'
-            })
-
-            .when('/profile', {
-                controller: 'ProfileController',
-                templateUrl: 'html/User/profile.html',
-                controllerAs: 'vm'
-            })
-
-            .otherwise({ redirectTo: '/login' });
+                controllerAs: 'vm',
+                templateUrl: 'html/User/recover_password.html'
+            });
     }
 
     run.$inject = ['$rootScope', '$location', '$cookies', '$http'];
