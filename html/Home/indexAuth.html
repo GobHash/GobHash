@@ -1,0 +1,64 @@
+<div class="container-fluid no-padding">
+
+    <div class="row globhash-row1">
+        <div class="col-lg-6 col-md-12 uppercase flex-vertical-horizontal-center globhash-title">
+            <div>Gob<span class="">has#</span></div>
+        </div>
+        <div class="col-lg-6 col-md-12 text-center flex-vertical-horizontal-center">
+            <p class="globhash-subtitle-1">Plataforma de análisis sobre las</p>
+            <p class="globhash-subtitle-2">adquisiciones del Estado de Guatemala</p>
+        </div>
+    </div>
+    <div class="row globhash-row2">
+        <div ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" ng-bind="flash.message"></div>
+        <!-- Text section -->
+        <div class="col-lg-8 col-md-7 second-row-text-container">
+            <div class="second-row-text-inner-item">
+                <p class="globhash-text"><span class="uppercase">Gob<span class="globhash-text-orange">has#</span></span> te permite</p>
+                <p>interpretar datos como</p>
+                <p>nunca antes!!</p>
+            </div>
+
+            <div class="mas-populares-box font-size-l">
+                <p>#MasPopulares</p>
+            </div>
+        </div>
+
+        <!-- Form section -->
+        <div class="col-lg-4 col-md-5 hidden-xs hidden-sm">
+            <div class="col-xs-12 register-info-box am-register-form">
+                <div ui-view></div>
+            </div>
+        </div>
+    </div>
+    <div class="row globhash-row3">
+        <div class="col-md-4 col-xs-12 inner-section border-black">
+            <div class="col-xs-10">
+                <p>Los 5 proveedores con mas ganancia en el Ministerio de Educacion(2016) #Educacion #2016</p>
+            </div>
+            <div class="col-xs-2 no-padding no-margin">
+                <a class="text-decoration-none" href="#">
+                    <div class="border-black background-orange margin-top-10 flex-vertical-horizontal-center ">
+                        <p class="font-bold text-center font-color-black">Ver Mas</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-4 col-xs-12 inner-section border-black">
+            <div class="col-xs-10">
+                <p>Ejecucion del presupuesto de MINFIN 2016 #Finanzas #2016</p>
+            </div>
+            <div class="col-xs-2 no-padding no-margin">
+                <a class="text-decoration-none" href="#">
+                    <div class="border-black background-orange margin-top-10 flex-vertical-horizontal-center ">
+                        <p class="font-bold text-center font-color-black">Ver Mas</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-4 col-xs-12 inner-section text-center background-orange border-black">
+            <p class="font-bold font-size-xl">¿Quieres un servicio personalizado?</p>
+            <a href="#">Comunícate con nosotros</a>
+        </div>
+    </div>
+</div>

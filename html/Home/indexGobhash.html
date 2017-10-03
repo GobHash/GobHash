@@ -1,0 +1,141 @@
+<body class="page-container-bg-solid">
+    <div class="page-wrapper">
+        <div class="page-wrapper-row">
+            <div class="page-wrapper-top">
+                <!-- BEGIN HEADER -->
+                <div class="page-header">
+                    <!-- BEGIN HEADER TOP -->
+                    <div class="page-header-top">
+                        <div class="container">
+                            <!-- BEGIN LOGO -->
+
+                            <div class="page-logo">
+                                <!-- <a href="">
+                                    <img src="/assets/layouts/layout3/img/logo-default.jpg" alt="logo" class="logo-default">
+                                </a> -->
+                                <!-- <a href="/" class="logo-default" />GOB HASH</a> -->
+                            </div>
+                            <!-- END LOGO -->
+
+                            <!-- BEGIN TOP NAVIGATION MENU -->
+                            <div class="top-menu">
+                                <ul class="nav navbar-nav pull-right">
+                                    <li class="droddown dropdown-separator">
+                                        <span class="separator"></span>
+                                    </li>
+                                    <li class="dropdown dropdown-user dropdown-dark">
+                                        <img alt="" class="img-circle" src="html/assets/layouts/layout3/img/avatar9.jpg">
+                                        <span class="username username-hide-mobile">Fitocs452</span>
+                                    </li>
+                                    <li class="dropdown dropdown-extended quick-sidebar-toggler">
+                                        <span class="sr-only">Toggle Quick Sidebar</span>
+                                        <i class="icon-logout"></i>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- END TOP NAVIGATION MENU -->
+                        </div>
+                    </div>
+                    <!-- END HEADER TOP -->
+
+                    <!-- BEGIN HEADER MENU -->
+                    <div class="page-header-menu">
+                        <div class="container">
+
+                            <!-- BEGIN MEGA MENU -->
+                            <!-- DOC: Apply "hor-menu-light" class after the "hor-menu" class below to have a horizontal menu with white background -->
+                            <!-- DOC: Remove data-hover="dropdown" and data-close-others="true" attributes below to disable the dropdown opening on mouse hover -->
+                            <div class="hor-menu  ">
+                                <ul class="nav navbar-nav">
+                                    <li aria-haspopup="true" class="active">
+                                        <a class="btn-menu" href="/feed"> Mis #
+                                            <span class="arrow"></span>
+                                        </a>
+                                    </li>
+                                    <li class="active">
+                                        <a class="btn-menu" href="/profile"> Perfil
+                                            <span class="arrow"></span>
+                                        </a>
+                                    </li>
+                                    <li class="active">
+                                        <a class="btn-menu" href="javascript:;"> Top #
+                                            <span class="arrow"></span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- END MEGA MENU -->
+                        </div>
+                    </div>
+                    <!-- END HEADER MENU -->
+                </div>
+                <!-- END HEADER -->
+            </div>
+        </div>
+        <div class="page-wrapper-row full-height">
+            <div class="page-wrapper-middle">
+                <!-- BEGIN CONTAINER -->
+                <div class="page-container">
+                    <!-- BEGIN CONTENT -->
+                    <div class="page-content-wrapper">
+                        <!-- BEGIN CONTENT BODY -->
+                        <!-- BEGIN PAGE HEAD-->
+                        <div class="page-head">
+                            <div class="container">
+                                <!-- BEGIN PAGE TITLE -->
+                                <div class="page-title">
+                                    <h1>Feed
+                                        <!-- <small>dashboard & statistics</small> -->
+                                    </h1>
+                                </div>
+                                <!-- END PAGE TITLE -->
+                            </div>
+                        </div>
+                        <!-- END PAGE HEAD-->
+                        <!-- BEGIN PAGE CONTENT BODY -->
+                        <div class="page-content">
+                            <div class="container">
+                                <!-- BEGIN PAGE BREADCRUMBS -->
+                                <ul class="page-breadcrumb breadcrumb">
+                                    <li>
+                                        <a href="/">Home</a>
+                                        <i class="fa fa-circle"></i>
+                                    </li>
+                                    <li>
+                                        <span>Dashboard</span>
+                                    </li>
+                                </ul>
+                                <!-- END PAGE BREADCRUMBS -->
+                                <!-- BEGIN PAGE CONTENT INNER -->
+                                <div class="page-content-inner">
+                                    <div ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" ng-bind="flash.message"></div>
+                                    <!-- <div ng-view></div> -->
+                                    <ui-view></ui-view>
+                                </div>
+                                <!-- END PAGE CONTENT INNER -->
+                            </div>
+                        </div>
+                        <!-- END PAGE CONTENT BODY -->
+                        <!-- END CONTENT BODY -->
+                    </div>
+                    <!-- END CONTENT -->
+                </div>
+                <!-- END CONTAINER -->
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="page-wrapper-row">
+            <div class="page-wrapper-bottom">
+                <div class="page-footer">
+                    <div class="container">
+                        2017 &copy; GobHash - UVG
+                    </div>
+                </div>
+                <div class="scroll-to-top">
+                    <i class="icon-arrow-up"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
