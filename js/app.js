@@ -2,9 +2,7 @@
     'use strict';
 
     angular
-        // .module('gobhash', ['ngRoute', 'ngCookies', 'uiCropper'])
-        // .module('gobhash', ['ngRoute', 'ngCookies', 'ui.router'])
-        .module('gobhash', ['ngRoute', 'ui.router', 'ngCookies', 'angularModalService', 'ui.bootstrap', 'chart.js'])
+        .module('gobhash', [])
         .config(config)
         .run(run);
 
