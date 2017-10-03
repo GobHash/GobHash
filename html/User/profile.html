@@ -1,29 +1,149 @@
-<div class="col-md-6 col-md-offset-3">
-    <h2>Profile</h2>
-    <form name="form" ng-submit="vm.uploadCurrentUserProfile()" role="form">
-        <div class="form-group">
-            <div>Imagen de Perfil:</div>
-            <div><img ng-src="{{vm.user.profileImage}}" /></div>
+<div class="page-content-inner">
+    <div class="row">
+        <div class="col-md-12">
+            <!-- BEGIN PROFILE SIDEBAR -->
+            <div class="profile-sidebar">
+                <!-- PORTLET MAIN -->
+                <div class="portlet light profile-sidebar-portlet ">
+                    <!-- SIDEBAR USERPIC -->
+                    <div class="profile-userpic">
+                        <img src="html/assets/pages/media/profile/profile_user.jpg" class="img-responsive" alt=""> </div>
+                    <!-- END SIDEBAR USERPIC -->
+                    <!-- SIDEBAR USER TITLE -->
+                    <div class="profile-usertitle">
+                        <div class="profile-usertitle-name"> Fitocs452 </div>
+                    </div>
+                    <!-- END SIDEBAR USER TITLE -->
+                    <!-- SIDEBAR BUTTONS -->
+                    <div class="profile-userbuttons">
+                        <button type="button" class="btn btn-menu btn-sm">Follow</button>
+                    </div>
+                    <!-- END SIDEBAR BUTTONS -->
+                    <!-- SIDEBAR MENU -->
+                    <div class="profile-usermenu">
 
-            <div>Recorta tu imagen:</div>
-            <div class="cropArea"><div ng-hide="vm.myCroppedImage">Select an image file: <input type="file" id="fileInput" /></div>    
-            <ui-cropper image="vm.myImage" area-type="circle" chargement="'Loading'" result-image="vm.user.profileImage" canvas-scalemode="true"></ui-cropper>
+                    </div>
+                    <!-- END MENU -->
+                </div>
+                <!-- END PORTLET MAIN -->
+                <!-- PORTLET MAIN -->
+                <div class="portlet light ">
+                    <!-- STAT -->
+                    <div class="row list-separated profile-stat">
+                        <div class="col-md-6 col-sm-6 col-xs-9">
+                            <div class="uppercase profile-stat-title"> 37 </div>
+                            <div class="uppercase profile-stat-text"> Posts </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-9">
+                            <div class="uppercase profile-stat-title"> 51 </div>
+                            <div class="uppercase profile-stat-text"> Likes </div>
+                        </div>
+                    </div>
+                    <!-- END STAT -->
+                </div>
+                <!-- END PORTLET MAIN -->
             </div>
+            <!-- END BEGIN PROFILE SIDEBAR -->
+            <!-- BEGIN PROFILE CONTENT -->
+            <div class="profile-content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="portlet light ">
+                            <div class="portlet-title tabbable-line">
+                                <div class="caption caption-md">
+                                    <i class="icon-globe theme-font hide"></i>
+                                    <span class="caption-subject font-dark bold uppercase">Perfil</span>
+                                </div>
+                                <ul class="nav nav-tabs">
+                                    <li class="active under">
+                                        <a href="#tab_1_1" data-toggle="tab">Información personal</a>
+                                    </li>
+<!--                                     <li>
+                                        <a href="#tab_1_2" data-toggle="tab">Change Avatar</a>
+                                    </li> -->
+                                    <li class="under">
+                                        <a href="#tab_1_3" data-toggle="tab">Contraseña</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="portlet-body">
+                                <div class="tab-content">
+                                    <!-- PERSONAL INFO TAB -->
+                                    <div class="tab-pane active" id="tab_1_1">
+                                        <form role="form" action="#">
+                                            <div class="form-group">
+                                                <label class="control-label">Nombre de usuario</label>
+                                                <input type="text" placeholder="Fitocs452" class="form-control" /> </div>
+                                            <div class="form-group">
+                                                <label class="control-label">Ocupación</label>
+                                                <input type="text" placeholder="Analista de datos" class="form-control" /> </div>
+                                            <div class="form-group">
+                                                <label class="control-label">Acerca de ti</label>
+                                                <textarea class="form-control" rows="3" placeholder="Soy un gran anailista!"></textarea>
+                                            </div>
+                                            <div class="margiv-top-10">
+                                                <a href="javascript:;" class="btn btn-menu"> Guardar cambios </a>
+                                                <a href="javascript:;" class="btn default"> Cancelar </a>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <!-- END PERSONAL INFO TAB -->
+                                    <!-- CHANGE AVATAR TAB -->
+<!--                                         <div class="tab-pane" id="tab_1_2">
+                                        <p> Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa
+                                            nesciunt laborum eiusmod. </p>
+                                        <form action="#" role="form">
+                                            <div class="form-group">
+                                                <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                    <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
+                                                        <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image" alt="" /> </div>
+                                                    <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"> </div>
+                                                    <div>
+                                                        <span class="btn default btn-file">
+                                                            <span class="fileinput-new"> Select image </span>
+                                                            <span class="fileinput-exists"> Change </span>
+                                                            <input type="file" name="..."> </span>
+                                                        <a href="javascript:;" class="btn default fileinput-exists" data-dismiss="fileinput"> Remove </a>
+                                                    </div>
+                                                </div>
+                                                <div class="clearfix margin-top-10">
+                                                    <span class="label label-danger">NOTE! </span>
+                                                    <span>Attached image thumbnail is supported in Latest Firefox, Chrome, Opera, Safari and Internet Explorer 10 only </span>
+                                                </div>
+                                            </div>
+                                            <div class="margin-top-10">
+                                                <a href="javascript:;" class="btn green"> Submit </a>
+                                                <a href="javascript:;" class="btn default"> Cancel </a>
+                                            </div>
+                                        </form>
+                                    </div> -->
+                                    <!-- END CHANGE AVATAR TAB -->
+                                    <!-- CHANGE PASSWORD TAB -->
+                                    <div class="tab-pane" id="tab_1_3">
+                                        <form action="#">
+                                            <div class="form-group">
+                                                <label class="control-label">Contraseña actual</label>
+                                                <input type="password" class="form-control" /> </div>
+                                            <div class="form-group">
+                                                <label class="control-label">Nueva contraseña</label>
+                                                <input type="password" class="form-control" /> </div>
+                                            <div class="form-group">
+                                                <label class="control-label">Confirme nueva contraseña</label>
+                                                <input type="password" class="form-control" /> </div>
+                                            <div class="margin-top-10">
+                                                <a href="javascript:;" class="btn btn-menu"> Cambiar contraseña </a>
+                                                <a href="javascript:;" class="btn default"> Cancelar </a>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <!-- END CHANGE PASSWORD TAB -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END PROFILE CONTENT -->
         </div>
-        <div class="form-group" ng-class="{ 'has-error': form.email.$dirty && form.email.$error.required }">
-            <label for="email">Email</label>
-            <input ng-pattern="vm.emailRegex" type="email" name="email" id="email" class="form-control" ng-model="vm.user.email" required />
-            <span ng-show="form.email.$dirty && form.email.$error.required" class="help-block">Ingresa tu correo</span>
-            <span ng-show="form.email.$dirty && form.email.$error.pattern" class="help-block">Correo incorrecto</span>
-        </div>
-        <div class="form-group" ng-class="{ 'has-error': form.biography.$dirty && form.biography.$error.required }">
-            <label for="username">Biografia</label>
-            <input type="text" name="biography" id="Text1" class="form-control" ng-model="vm.user.biography" />
-            <span ng-show="form.biography.$dirty && form.biography.$error.required" class="help-block">Escribe tu biografia</span>
-        </div>
-        <div class="form-actions">
-            <button type="submit" ng-disabled="form.$invalid || vm.dataLoading" class="btn btn-primary">Actualizar</button>
-            <img ng-if="vm.dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
-        </div>
-    </form>
+    </div>
 </div>

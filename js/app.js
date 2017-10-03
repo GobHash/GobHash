@@ -33,6 +33,14 @@
                 templateUrl: 'html/Home/home.html'
             })
 
+            .state('profile', {
+                parent: 'index',
+                url: 'user/profile',
+                controller: 'ProfileController',
+                controllerAs: 'vm',
+                templateUrl: 'html/User/profile.html'
+            })
+
             .state('login', {
                 parent: 'auth',
                 url: '/login',
