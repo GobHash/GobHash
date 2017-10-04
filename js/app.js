@@ -62,6 +62,14 @@
                 url: '/recover',
                 controller: 'RecoverController',
                 controllerAs: 'vm',
+                templateUrl: 'html/User/recover.html'
+            })
+
+            .state('send_recover', {
+                parent: 'auth',
+                url: '/recover/{token}',
+                controller: 'RecoverPasswordController',
+                controllerAs: 'vm',
                 templateUrl: 'html/User/recover_password.html'
             });
     }
@@ -76,7 +84,13 @@
 
         $rootScope.$on('$locationChangeStart', function (event, next, current) {
             // redirect to login page if not logged in and trying to access a restricted page
-            var restrictedPage = $.inArray($location.path(), ['/login', '/register', '/recover']) === -1;
+            var restrictedPage = $.inArray($location.path(), ['/auth/login', '/auth/register', '/auth/recover']) === -1;
+            var tokenRegex = /^\/auth\/recover\/[a-z0-9]+$/;
+
+            if ($location.path().match(tokenRegex)) {
+                restrictedPage = false;
+            }
+
             var loggedIn = $rootScope.globals.currentUser;
             if (restrictedPage && !loggedIn) {
                 $location.path('/auth/login');

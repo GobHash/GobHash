@@ -3,19 +3,31 @@
 
     angular
         .module('gobhash')
-        .controller('RecoverController', RecoverController);
+        .controller('RecoverPasswordController', RecoverPasswordController);
 
-    RecoverController.$inject = ['UserService', '$location', '$rootScope', 'FlashService'];
-    function RecoverController(UserService, $location, $rootScope, FlashService) {
+    RecoverPasswordController.$inject = ['UserService', '$location', '$rootScope', '$stateParams'];
+    function RecoverPasswordController(UserService, $location, $rootScope, $stateParams) {
         var vm = this;
 
         vm.recover = {};
         vm.RecoverPassword = RecoverPassword;
-        vm.emailRegex = /^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/;
+        vm.ValidateNewPassword = ValidateNewPassword;
+
+        function ValidateNewPassword() {
+            vm.dataLoading = true;
+            if (vm.recover.password !== vm.recover.repassword) {
+                vm.recover.password = '';
+                vm.recover.repassword = '';
+
+                vm.dataLoading = false;
+                return;
+            }
+
+            vm.RecoverPassword();
+        }
 
         function RecoverPassword() {
-            vm.dataLoading = true;
-            UserService.GetByUsername(vm.recover.username)
+            UserService.SendResetPassword($stateParams.token, vm.recover.password)
                 .then(function (response) {
                     if (response.success) {
                         FlashService.Success('Revisa tu correo electrónico', true);

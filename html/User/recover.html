@@ -1,15 +1,16 @@
 <div class="col-md-6 col-md-offset-3">
     <h2>Recupera tu contraseña</h2>
-    <form name="form" ng-submit="vm.ValidateNewPassword()" role="form">
-        <div class="form-group" ng-class="{ 'has-error': form.password.$dirty && form.password.$error.required }">
-            <label for="password">Nueva contraseña</label>
-            <input type="text" name="password" id="password" class="form-control" ng-model="vm.recover.password" required />
-            <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">Ingresa un usuario</span>
+    <form name="form" ng-submit="vm.RecoverPassword()" role="form">
+        <div class="form-group" ng-class="{ 'has-error': form.username.$dirty && form.username.$error.required }">
+            <label for="username">Usuario (Alias)</label>
+            <input type="text" name="username" id="username" class="form-control" ng-model="vm.recover.username" required />
+            <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Ingresa un usuario</span>
         </div>
-        <div class="form-group" ng-class="{ 'has-error': form.repassword.$dirty && form.repassword.$error.required }">
-            <label for="repassword">Escriba de nuevo la contraseña</label>
-            <input type="text" name="repassword" id="repassword" class="form-control" ng-model="vm.recover.repassword" required />
-            <span ng-show="form.repassword.$dirty && form.repassword.$error.required" class="help-block">Ingresa un usuario</span>
+        <div class="form-group" ng-class="{ 'has-error': form.email.$dirty && form.email.$error.required }">
+            <label for="email">Email</label>
+            <input ng-pattern="vm.emailRegex" type="email" name="email" id="email" class="form-control" ng-model="vm.recover.email" required />
+            <span ng-show="form.email.$dirty && form.email.$error.required" class="help-block">Ingresa tu correo</span>
+            <span ng-show="form.email.$dirty && form.email.$error.pattern" class="help-block">Correo incorrecto</span>
         </div>
         <div class="form-actions">
             <button type="submit" ng-disabled="form.$invalid || vm.dataLoading" class="btn btn-primary">Recuperar</button>

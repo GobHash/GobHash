@@ -16,44 +16,32 @@
         return service;
 
         function Login(username, password, callback) {
-
-            /* Dummy authentication for testing, uses $timeout to simulate api call
-             ----------------------------------------------*/
-            $timeout(function () {
-                var response;
-                UserService.GetByUsername(username)
-                    .then(function (user) {
-                        if (user !== null && user.password === password) {
-                            response = { success: true };
-                        } else {
-                            response = { success: false, message: 'Usuario o contraseña incorrecto' };
-                        }
-                        callback(response);
-                    });
-            }, 1000);
-
-            /* Use this for real authentication
-             ----------------------------------------------*/
-            //$http.post('/api/authenticate', { username: username, password: password })
-            //    .success(function (response) {
-            //        callback(response);
-            //    });
+            $http.post('https://api.gobhash.com/v1/auth/login', { username: username, password: password })
+               .then(function (response) {
+                   callback(response);
+               })
+               .catch(function (error) {
+                    callback(error);
+               });
 
         }
 
-        function SetCredentials(username, password) {
+        function SetCredentials(username, password, token) {
             var authdata = Base64.encode(username + ':' + password);
 
             $rootScope.globals = {
                 currentUser: {
                     username: username,
-                    authdata: authdata
+                    authdata: authdata,
+                    token: token
                 }
             };
 
             // set default auth header for http requests
-            $http.defaults.headers.common['Authorization'] = 'Basic ' + authdata;
+            $http.defaults.headers.common['Authorization'] = 'Bearer ' + token;
 
+            console.log($rootScope.globals);
+            console.log($http.defaults.headers.common['Authorization']);
             // store user details in globals cookie that keeps user logged in for 1 week (or until they logout)
             var cookieExp = new Date();
             cookieExp.setDate(cookieExp.getDate() + 7);

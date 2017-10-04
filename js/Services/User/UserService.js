@@ -15,6 +15,8 @@
         service.Create = Create;
         service.Update = Update;
         service.Delete = Delete;
+        service.ResetPassword = ResetPassword;
+        service.SendResetPassword = SendResetPassword;
 
         return service;
 
@@ -40,6 +42,22 @@
 
         function Delete(id) {
             return $http.delete('/api/users/' + id).then(handleSuccess, handleError('Error deleting user'));
+        }
+
+        function ResetPassword(username, email) {
+            return $http.post('https://api.gobhash.com/v1/auth/reset', { username: username, email: email })
+                .then(
+                    handleSuccess,
+                    handleError('Error recuperando contraseña')
+                );
+        }
+
+        function SendResetPassword(token, password) {
+            return $http.post('https://api.gobhash.com/v1/users/password/change', { token: token, password: password })
+                .then(
+                    handleSuccess,
+                    handleError('Error enviando nueva contraseña')
+                );
         }
 
         // private functions
