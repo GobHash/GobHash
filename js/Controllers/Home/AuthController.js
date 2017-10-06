@@ -6,9 +6,6 @@
         .controller('AuthController', AuthController);
 
     AuthController.$inject = ['$rootScope'];
-    function AuthController($rootScope) {
-        var vm = this;
-
-    }
+    function AuthController($rootScope) {}
 
 })();

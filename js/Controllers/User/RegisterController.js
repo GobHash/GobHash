@@ -5,7 +5,13 @@
         .module('gobhash')
         .controller('RegisterController', RegisterController);
 
-    RegisterController.$inject = ['UserService', '$location', '$rootScope', 'FlashService'];
+    RegisterController.$inject = [
+        'UserService',
+        '$location',
+        '$rootScope',
+        'FlashService'
+    ];
+
     function RegisterController(UserService, $location, $rootScope, FlashService) {
         var vm = this;
 
@@ -14,17 +20,17 @@
 
         function register() {
             vm.dataLoading = true;
-            UserService.Create(vm.user)
-                .then(function (response) {
-                    if (response.success) {
-                        FlashService.Success('Registro exitoso', true);
-                        $location.path('/login');
-                    } else {
-                        FlashService.Error(response.message);
-                        vm.dataLoading = false;
-                    }
-                });
-        }
+
+            UserService.Create(vm.user, function (response) {
+                if (response.success) {
+                    FlashService.Success('Registro exitoso', true);
+                    $location.path('/login');
+                } else {
+                    FlashService.Error('No se pudo registrar usuario');
+                    vm.dataLoading = false;
+                }
+            });
+        };
     }
 
 })();

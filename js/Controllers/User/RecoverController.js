@@ -5,7 +5,13 @@
         .module('gobhash')
         .controller('RecoverController', RecoverController);
 
-    RecoverController.$inject = ['UserService', '$location', '$rootScope', 'FlashService'];
+    RecoverController.$inject = [
+        'UserService',
+        '$location',
+        '$rootScope',
+        'FlashService'
+    ];
+
     function RecoverController(UserService, $location, $rootScope, FlashService) {
         var vm = this;
 
@@ -15,16 +21,16 @@
 
         function RecoverPassword() {
             vm.dataLoading = true;
-            UserService.ResetPassword(vm.recover.username, vm.recover.email)
-                .then(function (response) {
-                    if (response.success) {
-                        FlashService.Success('Revisa tu correo electrónico', true);
-                        $location.path('/login');
-                    } else {
-                        FlashService.Error(response.message);
-                        vm.dataLoading = false;
-                    }
-                });
+
+            UserService.ResetPassword(vm.recover.username, vm.recover.email, function (response) {
+                if (response.success) {
+                    FlashService.Success('Revisa tu correo electrónico', true);
+                    $location.path('/login');
+                } else {
+                    FlashService.Error('No se pudo recuperar contraseña');
+                    vm.dataLoading = false;
+                }
+            });
         }
     }
 

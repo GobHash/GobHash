@@ -5,10 +5,13 @@
         .module('gobhash')
         .controller('LoginController', LoginController);
 
-    LoginController.$inject = ['$location', 'AuthenticationService', 'FlashService'];
-    // LoginController.$inject = ['$location', 'FlashService'];
+    LoginController.$inject = [
+        '$location',
+        'AuthenticationService',
+        'FlashService'
+    ];
+
     function LoginController($location, AuthenticationService, FlashService) {
-    // function LoginController($location, FlashService) {
         var vm = this;
 
         vm.login = login;
@@ -20,19 +23,25 @@
 
         function login() {
             vm.dataLoading = true;
-            AuthenticationService.Login(vm.username, vm.password, function (response) {
-                if (response.status === 200) {
-                    AuthenticationService.SetCredentials(
-                        vm.username,
-                        vm.password,
-                        response.data.token
-                    );
-                    $location.path('/');
-                } else {
-                    FlashService.Error(response.message);
-                    vm.dataLoading = false;
+            AuthenticationService.Login(
+                // Data: Usuario y contraseña
+                vm.username,
+                vm.password,
+
+                function (response) {
+                    if (response.success) {
+                        AuthenticationService.SetCredentials(
+                            vm.username,
+                            vm.password,
+                            response.response.data.token
+                        );
+                        $location.path('/');
+                    } else {
+                        FlashService.Error('Usuario o contraseña incorrecta');
+                        vm.dataLoading = false;
+                    }
                 }
-            });
+            );
         };
     }
 

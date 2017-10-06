@@ -8,6 +8,7 @@
     AuthenticationService.$inject = ['$http', '$cookies', '$rootScope', '$timeout', 'UserService'];
     function AuthenticationService($http, $cookies, $rootScope, $timeout, UserService) {
         var service = {};
+        var apiUrl = 'https://api.gobhash.com/v1';
 
         service.Login = Login;
         service.SetCredentials = SetCredentials;
@@ -16,14 +17,13 @@
         return service;
 
         function Login(username, password, callback) {
-            $http.post('https://api.gobhash.com/v1/auth/login', { username: username, password: password })
+            $http.post(apiUrl + '/auth/login', { username: username, password: password })
                .then(function (response) {
-                   callback(response);
+                    handleSuccess(response, callback);
                })
                .catch(function (error) {
-                    callback(error);
+                    handleError(error, callback);
                });
-
         }
 
         function SetCredentials(username, password, token) {
@@ -40,8 +40,6 @@
             // set default auth header for http requests
             $http.defaults.headers.common['Authorization'] = 'Bearer ' + token;
 
-            console.log($rootScope.globals);
-            console.log($http.defaults.headers.common['Authorization']);
             // store user details in globals cookie that keeps user logged in for 1 week (or until they logout)
             var cookieExp = new Date();
             cookieExp.setDate(cookieExp.getDate() + 7);
@@ -52,6 +50,24 @@
             $rootScope.globals = {};
             $cookies.remove('globals');
             $http.defaults.headers.common.Authorization = 'Basic';
+        }
+
+        function handleSuccess(res, callback) {
+            let returnData = {
+                success: true,
+                response: res
+            };
+
+            return callback(returnData);
+        }
+
+        function handleError(error, callback) {
+            let returnData = {
+                success: false,
+                message: error
+            };
+
+            return callback(returnData);
         }
     }
 

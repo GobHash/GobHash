@@ -7,33 +7,67 @@
 
     UserService.$inject = ['$http'];
     function UserService($http) {
+        var apiUrl = 'https://api.gobhash.com/v1';
+        // var apiUrl = 'https://api-dev.gobhash.com';
         var service = {};
 
-        service.GetAll = GetAll;
-        service.GetById = GetById;
-        service.GetByUsername = GetByUsername;
         service.Create = Create;
-        service.Update = Update;
-        service.Delete = Delete;
         service.ResetPassword = ResetPassword;
         service.SendResetPassword = SendResetPassword;
+        service.Update = Update;
+        service.Delete = Delete;
 
         return service;
 
-        function GetAll() {
-            return $http.get('/api/users').then(handleSuccess, handleError('Error getting all users'));
+        // Registro de usuario
+        function Create(user, callback) {
+            return $http.post(
+                    apiUrl + '/users',
+                    user
+                )
+               .then(function (response) {
+                    handleSuccess(response, callback);
+               })
+               .catch(function (error) {
+                    handleError(error, callback);
+               }
+            );
         }
 
-        function GetById(id) {
-            return $http.get('/api/users/' + id).then(handleSuccess, handleError('Error getting user by id'));
+        // Solicitar recuperación de usuario
+        function ResetPassword(username, email, callback) {
+            return $http.post(
+                    apiUrl + '/auth/reset',
+                    {
+                        username: username,
+                        email: email
+                    }
+                )
+                .then(function (response) {
+                    handleSuccess(response, callback);
+                })
+                .catch(function (error) {
+                    handleError(error, callback);
+                }
+            );
         }
 
-        function GetByUsername(username) {
-            return $http.get('/api/users/' + username).then(handleSuccess, handleError('Error getting user by username'));
-        }
-
-        function Create(user) {
-            return $http.post('/api/users', user).then(handleSuccess, handleError('Error creating user'));
+        // Recuperación de usuario confirmada
+        function SendResetPassword(token, password, callback) {
+            return $http.post(
+                    apiUrl + '/users/password/change',
+                    {
+                        token: token,
+                        password: password
+                    }
+                )
+                .then(function (response) {
+                    handleSuccess(response, callback);
+                })
+                .catch(function (error) {
+                    handleError(error, callback);
+                }
+            );
         }
 
         function Update(user) {
@@ -44,32 +78,24 @@
             return $http.delete('/api/users/' + id).then(handleSuccess, handleError('Error deleting user'));
         }
 
-        function ResetPassword(username, email) {
-            return $http.post('https://api.gobhash.com/v1/auth/reset', { username: username, email: email })
-                .then(
-                    handleSuccess,
-                    handleError('Error recuperando contraseña')
-                );
-        }
-
-        function SendResetPassword(token, password) {
-            return $http.post('https://api.gobhash.com/v1/users/password/change', { token: token, password: password })
-                .then(
-                    handleSuccess,
-                    handleError('Error enviando nueva contraseña')
-                );
-        }
-
         // private functions
 
-        function handleSuccess(res) {
-            return res.data;
+        function handleSuccess(res, callback) {
+            let returnData = {
+                success: true,
+                response: res
+            };
+
+            return callback(returnData);
         }
 
-        function handleError(error) {
-            return function () {
-                return { success: false, message: error };
+        function handleError(error, callback) {
+            let returnData = {
+                success: false,
+                message: error
             };
+
+            return callback(returnData);
         }
     }
 
