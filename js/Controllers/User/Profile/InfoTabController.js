@@ -3,10 +3,10 @@
 
     angular
         .module('gobhash')
-        .controller('ProfileController', ProfileController);
+        .controller('InfoTabController', InfoTabController);
 
-    ProfileController.$inject = ['$rootScope', 'FlashService', 'ProfileService'];
-    function ProfileController($rootScope, FlashService, ProfileService) {
+    InfoTabController.$inject = ['$rootScope', 'FlashService', 'ProfileService'];
+    function InfoTabController($rootScope, FlashService, ProfileService) {
         var vm = this;
 
         vm.GetProfileData = GetProfileData;

@@ -7,8 +7,8 @@
 
     UserService.$inject = ['$http'];
     function UserService($http) {
-        var apiUrl = 'https://api.gobhash.com/v1';
-        // var apiUrl = 'https://api-dev.gobhash.com';
+        // var apiUrl = 'https://api.gobhash.com/v1';
+        var apiUrl = 'https://api-dev.gobhash.com/v1';
         var service = {};
 
         service.Create = Create;

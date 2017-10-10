@@ -3,10 +3,10 @@
 
     angular
         .module('gobhash')
-        .controller('ProfileController', ProfileController);
+        .controller('RecoverPasswordController', RecoverPasswordController);
 
-    ProfileController.$inject = ['$rootScope', 'FlashService', 'ProfileService'];
-    function ProfileController($rootScope, FlashService, ProfileService) {
+    RecoverPasswordController.$inject = ['$rootScope', 'FlashService', 'ProfileService'];
+    function RecoverPasswordController($rootScope, FlashService, ProfileService) {
         var vm = this;
 
         vm.GetProfileData = GetProfileData;

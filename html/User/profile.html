@@ -71,16 +71,22 @@
                                     <!-- PERSONAL INFO TAB -->
                                     <div class="tab-pane active" id="tab_1_1">
                                         <form role="form" action="#">
-                                            <div class="form-group">
-                                                <label class="control-label">Nombre de usuario</label>
-                                                <input type="text" placeholder="Fitocs452" class="form-control" /> </div>
-                                            <div class="form-group">
-                                                <label class="control-label">Ocupación</label>
-                                                <input type="text" placeholder="Analista de datos" class="form-control" /> </div>
-                                            <div class="form-group">
-                                                <label class="control-label">Acerca de ti</label>
-                                                <textarea class="form-control" rows="3" placeholder="Soy un gran anailista!"></textarea>
+                                            <div class="form-group" ng-class="{ 'has-error': form.username.$dirty && form.username.$error.required }">
+                                                <label for="username">Nombre de usuario</label>
+                                                <input type="text" name="username" id="username" class="form-control" ng-model="vm.profileData.username" required />
+                                                <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Se requiere usuario</span>
                                             </div>
+
+                                            <div class="form-group" ng-class="{ 'has-error': form.occupation.$dirty }">
+                                                <label for="occupation">Ocupación</label>
+                                                <input type="text" name="occupation" id="occupation" class="form-control" ng-model="vm.profileData.occupation"/>
+                                            </div>
+
+                                            <div class="form-group" ng-class="{ 'has-error': form.biography.$dirty }">
+                                                <label for="biography">Acerca de ti</label>
+                                                <input type="text" name="biography" id="biography" class="form-control" ng-model="vm.profileData.biography"/>
+                                            </div>
+
                                             <div class="margiv-top-10">
                                                 <a href="javascript:;" class="btn btn-menu"> Guardar cambios </a>
                                                 <a href="javascript:;" class="btn default"> Cancelar </a>

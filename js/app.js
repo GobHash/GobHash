@@ -11,6 +11,7 @@
         $urlRouterProvider.otherwise("/auth/login");
 
         $stateProvider
+            // Feed: Aqui se ven todos los posts
             .state('index', {
                 url: '/',
                 controller: 'IndexController',
@@ -18,6 +19,8 @@
                 templateUrl: 'html/Home/indexGobhash.html'
             })
 
+            // Auth: Este contiene la vista del Welcome y heredan las vistas de registro,
+            // inicio de sesión, recuperar contraseña
             .state('auth', {
                 url: '/auth',
                 controller: 'AuthController',
@@ -25,22 +28,7 @@
                 templateUrl: 'html/Home/indexAuth.html'
             })
 
-            .state('home', {
-                parent: 'index',
-                url: '/home',
-                controller: 'HomeController',
-                controllerAs: 'vm',
-                templateUrl: 'html/Home/home.html'
-            })
-
-            .state('profile', {
-                parent: 'index',
-                url: 'user/profile',
-                controller: 'ProfileController',
-                controllerAs: 'vm',
-                templateUrl: 'html/User/profile.html'
-            })
-
+            // Login: Estado con el formulario para inicio de sesión
             .state('login', {
                 parent: 'auth',
                 url: '/login',
@@ -49,6 +37,7 @@
                 templateUrl: 'html/User/login.html'
             })
 
+            // Register: Estado con el formulario para registro de usuario
             .state('register', {
                 parent: 'auth',
                 url: '/register',
@@ -57,6 +46,7 @@
                 templateUrl: 'html/User/register.html'
             })
 
+            // Recover: Estado que solicita el reinicio (reset) de contraseña
             .state('recover', {
                 parent: 'auth',
                 url: '/recover',
@@ -65,12 +55,23 @@
                 templateUrl: 'html/User/recover.html'
             })
 
+            // SendRecover: Estado que confirma la nueva contraseña y la envía
             .state('send_recover', {
                 parent: 'auth',
                 url: '/recover/{token}',
                 controller: 'RecoverPasswordController',
                 controllerAs: 'vm',
                 templateUrl: 'html/User/recover_password.html'
+            })
+
+            // Profile: Estado que contiene la información del usuario, de aquí heredan
+            // información de perfil y nueva contraseña
+            .state('profile', {
+                parent: 'index',
+                url: 'user/profile',
+                controller: 'ProfileController',
+                controllerAs: 'vm',
+                templateUrl: 'html/User/profile.html'
             });
     }
 
