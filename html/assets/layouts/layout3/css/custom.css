@@ -250,3 +250,9 @@ li.active.under{
   border-bottom: 4px solid #ffa10e !important;
 }
 
+.img-responsive {
+  width: 250px;
+  height: 250px;
+}
+
+

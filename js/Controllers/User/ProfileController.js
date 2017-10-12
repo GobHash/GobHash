@@ -5,17 +5,19 @@
         .module('gobhash')
         .controller('ProfileController', ProfileController);
 
-    ProfileController.$inject = ['$rootScope', 'FlashService', 'ProfileService', 'UserService'];
-    function ProfileController($rootScope, FlashService, ProfileService, UserService) {
+    ProfileController.$inject = ['$scope', '$rootScope', 'FlashService', 'ProfileService', 'AuthenticationService'];
+    function ProfileController($scope, $rootScope, FlashService, ProfileService, AuthenticationService) {
         var vm = this;
 
         vm.GetProfileData = GetProfileData;
         vm.ChangeTab = ChangeTab;
         vm.UpdateProfileData = UpdateProfileData;
         vm.ChangePassword = ChangePassword;
+        vm.UpdateProfilePicture = UpdateProfilePicture;
 
         vm.profileData = {};
         vm.profilePicture = '';
+        vm.newProfilePicture = '';
         vm.profileStats = {};
         vm.passwordData = {}
 
@@ -38,14 +40,12 @@
                 $rootScope.globals.currentUser.id,
                 function(response) {
                     vm.profilePicture = response.response.data.picture.location;
-                    console.log(vm.profilePicture);
                 }
             );
 
             ProfileService.GetProfileStats(
                 $rootScope.globals.currentUser.id,
                 function(response) {
-                    console.log(response);
                     vm.profileStats = response.response.data;
                 }
             );
@@ -53,6 +53,9 @@
 
         function ChangeTab(tabNumber) {
             vm.actualTab = tabNumber;
+            if (vm.actualTab === 2 || vm.actualTab === '2') {
+                angular.element(document.querySelector('#fileInput')).on('change',handleFileSelect);
+            }
         }
 
         function UpdateProfileData() {
@@ -70,9 +73,57 @@
             );
         }
 
-        function ChangePassword() {
-            console.log('ChangePassword' + vm.passwordData);
+        function UpdateProfilePicture() {
+            vm.profilePicture = vm.newProfilePicture;
+            angular.element(document.querySelector('#profile-image')).css('height', '250px');
+            angular.element(document.querySelector('#profile-image')).css('width', '250px');
+
+            ProfileService.UpdateProfilePicture(
+                vm.newProfilePicture,
+                function(response) {
+                    if (response.success) {
+                        FlashService.Success('Foto de perfil actualizada', true);
+                        vm.newProfilePicture = '';
+                    } else {
+                        FlashService.Error('La foto de perfil no se actualizó');
+                        vm.GetProfileData();
+                    }
+                }
+            );
         }
+
+        function ChangePassword() {
+            if (vm.passwordData.password === vm.passwordData.repassword) {
+                ProfileService.UpdateProfilePassword(
+                    {
+                        currentPassword: vm.passwordData.currentPassword,
+                        password: vm.passwordData.password
+                    },
+                    function(response) {
+                        if (response.success) {
+                            FlashService.Success('Contraseña actualizada', true);
+                        } else {
+                            FlashService.Error('La contraseña no se actualizó');
+                        }
+                    }
+                );
+            } else {
+                FlashService.Error('Vuelva a intentarlo');
+            }
+        }
+
+        var handleFileSelect = function(evt) {
+            var file = evt.currentTarget.files[0];
+            var reader = new FileReader();
+
+            reader.onload = function (evt) {
+                $scope.$apply(function() {
+                    vm.newProfilePicture = evt.target.result;
+                });
+            };
+
+            reader.readAsDataURL(file);
+        };
     }
 
 })();

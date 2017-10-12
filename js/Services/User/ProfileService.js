@@ -18,6 +18,8 @@
         service.UpdateProfile = UpdateProfile;
         service.GetProfilePicture = GetProfilePicture;
         service.GetProfileStats = GetProfileStats;
+        service.UpdateProfilePicture = UpdateProfilePicture;
+        service.UpdateProfilePassword = UpdateProfilePassword;
 
         return service;
 
@@ -75,6 +77,40 @@
             );
         }
 
+        // Actualizar información del perfil
+        function UpdateProfilePicture(picture, callback) {
+            return $http.post(
+                    apiUrl + '/users/picture',
+                    {
+                        profile: picture,
+                    }
+                )
+                .then(function (response) {
+                    handleSuccess(response, callback);
+                })
+                .catch(function (error) {
+                    handleError(error, callback);
+                }
+            );
+        }
+
+        // Actualizar la contraseña
+        function UpdateProfilePassword(data, callback) {
+            return $http.post(
+                    apiUrl + '/users/password/update',
+                    {
+                      currentPassword: data.currentPassword,
+                      password: data.password
+                    }
+                )
+                .then(function (response) {
+                    handleSuccess(response, callback);
+                })
+                .catch(function (error) {
+                    handleError(error, callback);
+                }
+            );
+        }
 
         // private functions
 
