@@ -15,12 +15,57 @@
         var service = {};
 
         service.GetProfile = GetProfile;
+        service.UpdateProfile = UpdateProfile;
+        service.GetProfilePicture = GetProfilePicture;
+        service.GetProfileStats = GetProfileStats;
 
         return service;
 
-        // Recuperación de usuario confirmada
+        // Obtener perfil del usuario
         function GetProfile(callback) {
             return $http.get(apiUrl + '/users/profile')
+                .then(function (response) {
+                    handleSuccess(response, callback);
+                })
+                .catch(function (error) {
+                    handleError(error, callback);
+                }
+            );
+        }
+
+        // Obtener foto perfil del usuario
+        function GetProfilePicture(id, callback) {
+            return $http.get(apiUrl + '/users/' + id)
+                .then(function (response) {
+                    handleSuccess(response, callback);
+                })
+                .catch(function (error) {
+                    handleError(error, callback);
+                }
+            );
+        }
+
+        // Obtener estadisticas de usuario
+        function GetProfileStats(id, callback) {
+            return $http.get(apiUrl + '/stats/user/' + id)
+                .then(function (response) {
+                    handleSuccess(response, callback);
+                })
+                .catch(function (error) {
+                    handleError(error, callback);
+                }
+            );
+        }
+
+        // Actualizar información del perfil
+        function UpdateProfile(data, callback) {
+            return $http.post(
+                    apiUrl + '/users/profile',
+                    {
+                        biography: data.biography,
+                        occupation: data.occupation
+                    }
+                )
                 .then(function (response) {
                     handleSuccess(response, callback);
                 })

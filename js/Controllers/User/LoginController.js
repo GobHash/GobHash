@@ -31,6 +31,7 @@
                 function (response) {
                     if (response.success) {
                         AuthenticationService.SetCredentials(
+                            response.response.data.id,
                             vm.username,
                             vm.password,
                             response.response.data.token

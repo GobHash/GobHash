@@ -3,22 +3,19 @@
 
     angular
         .module('gobhash')
-        .directive('PasswordChangeDirective', PasswordChangeDirective);
+        .directive('passwordChange', PasswordChangeDirective);
 
-    PasswordChangeDirective.$inject = ['dependency1'];
-    function PasswordChangeDirective(dependency1) {
-        // Usage:
-        //
-        // Creates:
-        //
+    PasswordChangeDirective.$inject = [];
+    function PasswordChangeDirective() {
         var directive = {
             bindToController: true,
-            controller: PasswordChangeController,
+            controller: function() {},
             controllerAs: 'vm',
             link: link,
             restrict: 'EA',
+            templateUrl: 'html/User/Profile/change_password.html',
             scope: {
-                usuario: '=usuario'
+                data: '=data'
             }
         };
 
@@ -26,15 +23,5 @@
         
         function link(scope, element, attrs) {
         }
-    }
-
-    angular
-        .module('gobhash')
-        .controller('PasswordChangeDirective', PasswordChangeController);
-
-    PasswordChangeController.$inject = ['$scope', '$attrs'];
-    /* @ngInject */
-    function PasswordChangeController () {
-        
     }
 })();
