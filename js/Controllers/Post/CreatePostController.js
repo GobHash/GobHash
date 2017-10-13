@@ -90,7 +90,7 @@
                 vm.dashboard.first_submain = vm.GetPreview();
 
                 vm.postData.dashboard.first_submain.definition = vm.dashboard.first_submain.definition;
-                vm.postData.dashboard.first_submain.data = vm.dashboard.first_submain.data;
+                vm.postData.dashboard.first_submain.data = vm.dashboard.first_submain.widgetData;
 
                 vm.dashboardState.first_submain = true;
             } else if (vm.actualGraphic.number === 3) {
@@ -98,7 +98,7 @@
                 vm.dashboard.second_submain = vm.GetPreview();
 
                 vm.postData.dashboard.second_submain.definition = vm.dashboard.second_submain.definition;
-                vm.postData.dashboard.second_submain.data = vm.dashboard.second_submain.data;
+                vm.postData.dashboard.second_submain.data = vm.dashboard.second_submain.widgetData;
 
                 vm.dashboardState.second_submain = true;
             } else if (vm.actualGraphic.number === 4) {
@@ -106,7 +106,7 @@
                 vm.dashboard.third_submain = vm.GetPreview();
 
                 vm.postData.dashboard.third_submain.definition = vm.dashboard.third_submain.definition;
-                vm.postData.dashboard.third_submain.data = vm.dashboard.third_submain.data;
+                vm.postData.dashboard.third_submain.data = vm.dashboard.third_submain.widgetData;
 
                 vm.dashboardState.third_submain = true;
             } else {
