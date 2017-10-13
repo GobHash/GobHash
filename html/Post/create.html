@@ -45,11 +45,30 @@
                                 <img src="html/assets/images/add_icon.png" height="200px">
                             </a>
                             <div ng-if="vm.dashboardState.hasMain">
-                                <canvas
-                                    id="{{vm.dashboard.main.render.id}}"
-                                    class="{{vm.dashboard.main.render.class}}"
-                                    chart-data="{{vm.dashboard.main.widgetValues}}"
-                                    chart-labels="{{vm.dashboard.main.widgetLabels}}"
+                                
+                                <canvas ng-if="vm.dashboard.main.render.id == 'pie'"
+                                    id="pie"
+                                    class="chart chart-pie"
+                                    chart-data="vm.dashboard.main.widgetValues"
+                                    chart-labels="vm.dashboard.main.widgetLabels"
+                                    chart-options="options"
+                                    height="327"
+                                    width="655"
+                                ></canvas>
+                                <canvas ng-if="vm.dashboard.main.render.id == 'line'"
+                                    id="line"
+                                    class="chart chart-line"
+                                    chart-data="vm.dashboard.main.widgetValues"
+                                    chart-labels="vm.dashboard.main.widgetLabels"
+                                    chart-options="options"
+                                    height="327"
+                                    width="655"
+                                ></canvas>
+                                <canvas ng-if="vm.dashboard.main.render.id == 'bar'"
+                                    id="bar"
+                                    class="chart chart-bar"
+                                    chart-data="vm.dashboard.main.widgetValues"
+                                    chart-labels="vm.dashboard.main.widgetLabels"
                                     chart-options="options"
                                     height="327"
                                     width="655"
