@@ -82,7 +82,7 @@
                 vm.dashboard.main = vm.GetPreview();
 
                 vm.postData.dashboard.main.definition = vm.dashboard.main.definition;
-                vm.postData.dashboard.main.data = vm.dashboard.main.data;
+                vm.postData.dashboard.main.data = vm.dashboard.main.widgetData;
 
                 vm.dashboardState.hasMain = true;
             } else if (vm.actualGraphic.number === 2) {
