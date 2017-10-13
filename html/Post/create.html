@@ -1,41 +1,121 @@
 <div class="row">
     <div class="col-md-12">
-        <div class="portlet light portlet-fit ">
-            <div class="portlet-title">
-                <div class="caption">
-                    <span class="caption-subject font-dark sbold">
-                        Compras del IGSS en este momento
-                    </span>
-                </div>
-            </div>
-            <div class="portlet-body">
-                <div class="row" style="margin-top: 10px;">
-                    <div class="col-md-12">
-                        Gráfica Principal
-                    </div>
-                </div>
-                <div class="row" style="margin-top: 10px;">
-                    <div class="col-md-4">
-                        Gráfica 2
-                    </div>
-                    <div class="col-md-4">
-                        Gráfica 3
-                    </div>
-                    <div class="col-md-4">
-                        Gráfica 4
-                    </div>
-                </div>
-                <div class="row" style="margin-top: 10px;">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">Agregar Descripción</div>
-                      <div class="panel-body">
-                        <span align="justify" class="caption-subject font-dark sbold">
-                            En esta publicación podrás tener un log de las compras en tiempo real del IGSS
+        <form role="form" ng-submit="vm.CreatePost()">
+            <div class="portlet light portlet-fit ">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <span class="caption-subject font-dark sbold">
+                        Título y Descripción
                         </span>
-                      </div>
+                    </div>
+                </div>
+                <div class="portlet-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group" ng-class="{ 'has-error': form.title.$dirty && form.title.$error.required }">
+                                <label for="title">Título</label>
+                                <input type="text" name="title" id="title" class="form-control" ng-model="vm.postData.title" required/>
+                                <span ng-show="form.title.$dirty && form.title.$error.required" class="help-block">Se requiere título</span>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group" ng-class="{ 'has-error': form.description.$dirty && form.description.$error.required }">
+                                <label for="description">Descripción</label>
+                                <textarea type="text" name="description" id="description" class="form-control" ng-model="vm.postData.description" required/></textarea>
+                                <span ng-show="form.description.$dirty && form.description.$error.required" class="help-block">Se requiere descripción</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="portlet light portlet-fit ">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <span class="caption-subject font-dark sbold">
+                        Gráfica Principal
+                        </span>
+                    </div>
+                </div>
+                <div class="portlet-body">
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <a ng-if="!vm.dashboardState.hasMain" ng-click="vm.AddGraphic(1)">
+                                <img src="html/assets/images/add_icon.png" height="200px">
+                            </a>
+                            <div ng-if="vm.dashboardState.hasMain">
+                                <canvas
+                                    id="{{vm.dashboard.main.render.id}}"
+                                    class="{{vm.dashboard.main.render.class}}"
+                                    chart-data="{{vm.dashboard.main.widgetValues}}"
+                                    chart-labels="{{vm.dashboard.main.widgetLabels}}"
+                                    chart-options="options"
+                                    height="327"
+                                    width="655"
+                                ></canvas>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+
+            <div class="portlet light portlet-fit ">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <span class="caption-subject font-dark sbold">
+                        Gráfica 1
+                        </span>
+                    </div>
+                </div>
+                <div class="portlet-body">
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <a ng-click="vm.AddGraphic(2)">
+                                <img src="html/assets/images/add_icon.png" height="200px">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portlet light portlet-fit ">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <span class="caption-subject font-dark sbold">
+                        Gráfica 2
+                        </span>
+                    </div>
+                </div>
+                <div class="portlet-body">
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <a ng-click="vm.AddGraphic(3)">
+                                <img src="html/assets/images/add_icon.png" height="200px">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portlet light portlet-fit ">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <span class="caption-subject font-dark sbold">
+                        Gráfica 3
+                        </span>
+                    </div>
+                </div>
+                <div class="portlet-body">
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <a ng-click="vm.AddGraphic(4)">
+                                <img src="html/assets/images/add_icon.png" height="200px">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
 </div>
