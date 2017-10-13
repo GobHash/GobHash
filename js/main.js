@@ -12,7 +12,8 @@
                 'chart.js',
                 'ngFileUpload',
                 'gobhash',
-                'Widgets'
+                'Widgets',
+                'blockUI'
             ]
         );
 })();
