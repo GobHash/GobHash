@@ -11,7 +11,8 @@
                 'ui.bootstrap',
                 'chart.js',
                 'gobhash',
-                'Widgets'
+                'Widgets',
+                'blockUI'
             ]
         );
 })();
