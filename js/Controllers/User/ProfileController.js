@@ -5,8 +5,8 @@
         .module('gobhash')
         .controller('ProfileController', ProfileController);
 
-    ProfileController.$inject = ['$scope', '$rootScope', 'FlashService', 'ProfileService', 'AuthenticationService', 'Upload', '$timeout'];
-    function ProfileController($scope, $rootScope, FlashService, ProfileService, AuthenticationService, Upload, $timeout) {
+    ProfileController.$inject = ['$scope', '$rootScope', 'FlashService', 'ProfileService', 'AuthenticationService', '$timeout'];
+    function ProfileController($scope, $rootScope, FlashService, ProfileService, AuthenticationService, $timeout) {
         var vm = this;
 
         vm.GetProfileData = GetProfileData;
@@ -29,27 +29,6 @@
 
         vm.GetProfileData();
 
-        vm.UploadPic = UploadPic;
-
-        function UploadPic(file) {
-            file.upload = Upload.upload({
-                url: 'https://api-dev.gobhash.com/v1/users/picture',
-                data: {profile: vm.newProfilePicture},
-            });
-
-            file.upload.then(function (response) {
-              $timeout(function () {
-                file.result = response.data;
-              });
-            }, function (response) {
-              if (response.status > 0)
-                vm.errorMsg = response.status + ': ' + response.data;
-            }, function (evt) {
-              // Math.min is to fix IE which reports 200% sometimes
-              file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
-            });
-        }
-
         function GetProfileData() {
             ProfileService.GetProfile(
                 function(response) {
@@ -61,6 +40,8 @@
                 $rootScope.globals.currentUser.id,
                 function(response) {
                     vm.profilePicture = response.response.data.picture.location;
+                    angular.element(document.querySelector('#profile-image')).css('height', '250px');
+                    angular.element(document.querySelector('#profile-image')).css('width', '250px');
                 }
             );
 
@@ -99,18 +80,19 @@
             angular.element(document.querySelector('#profile-image')).css('height', '250px');
             angular.element(document.querySelector('#profile-image')).css('width', '250px');
 
-            // ProfileService.UpdateProfilePicture(
-            //     vm.newProfilePicture,
-            //     function(response) {
-            //         if (response.success) {
-            //             FlashService.Success('Foto de perfil actualizada', true);
-            //             vm.newProfilePicture = '';
-            //         } else {
-            //             FlashService.Error('La foto de perfil no se actualizó');
-            //             vm.GetProfileData();
-            //         }
-            //     }
-            // );
+            ProfileService.UpdateProfilePicture(
+                vm.newProfilePicture,
+                function(response) {
+                    if (response.success) {
+                        FlashService.Success('Foto de perfil actualizada', true);
+                        vm.newProfilePicture = '';
+                        vm.GetProfileData();
+                    } else {
+                        FlashService.Error('La foto de perfil no se actualizó');
+                        vm.GetProfileData();
+                    }
+                }
+            );
         }
 
         function ChangePassword() {

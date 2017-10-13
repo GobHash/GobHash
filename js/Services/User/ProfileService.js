@@ -5,8 +5,8 @@
         .module('gobhash')
         .factory('ProfileService', ProfileService);
 
-    ProfileService.$inject = ['$http', '$rootScope'];
-    function ProfileService($http, $rootScope) {
+    ProfileService.$inject = ['$http', '$rootScope', 'Upload'];
+    function ProfileService($http, $rootScope, Upload) {
         // var apiUrl = 'https://api.gobhash.com/v1';
         var apiUrl = 'https://api-dev.gobhash.com/v1';
 
@@ -76,23 +76,20 @@
         }
 
         // Actualizar información del perfil
-        function UpdateProfilePicture(picture, callback) {
-            // file.upload = Upload.upload({
-            //     url: apiUrl + '/users/picture',
-            //     data: {profile: picture},
-            // });
+        function UpdateProfilePicture(file, callback) {
+            file.upload = Upload.upload({
+                url: apiUrl + '/users/picture',
+                data: {
+                    profile: file
+                }
+            });
 
-            // file.upload.then(function (response) {
-            //   $timeout(function () {
-            //     file.result = response.data;
-            //   });
-            // }, function (response) {
-            //   if (response.status > 0)
-            //     vm.errorMsg = response.status + ': ' + response.data;
-            // }, function (evt) {
-            //   // Math.min is to fix IE which reports 200% sometimes
-            //   file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
-            // });
+            return file.upload.then(function (response) {
+                handleSuccess(response, callback);
+            })
+            .catch(function (error) {
+                handleError(error, callback);
+            });
         }
 
         // Actualizar la contraseña
