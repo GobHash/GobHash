@@ -74,7 +74,6 @@
                                     height="327"
                                     width="655"
                                 ></canvas>
-                                {{vm.postData.dashboard.main.data}}
                             </div>
                         </div>
                     </div>
@@ -92,9 +91,38 @@
                 <div class="portlet-body">
                     <div class="row">
                         <div class="col-md-12 text-center">
-                            <a ng-click="vm.AddGraphic(2)">
+                            <a ng-if="!vm.dashboardState.first_submain" ng-click="vm.AddGraphic(2)">
                                 <img src="html/assets/images/add_icon.png" height="200px">
                             </a>
+                            <div ng-if="vm.dashboardState.first_submain">
+                                <canvas ng-if="vm.dashboard.first_submain.render.id == 'pie'"
+                                    id="pie"
+                                    class="chart chart-pie"
+                                    chart-data="vm.dashboard.first_submain.widgetValues"
+                                    chart-labels="vm.dashboard.first_submain.widgetLabels"
+                                    chart-options="options"
+                                    height="327"
+                                    width="655"
+                                ></canvas>
+                                <canvas ng-if="vm.dashboard.first_submain.render.id == 'line'"
+                                    id="line"
+                                    class="chart chart-line"
+                                    chart-data="vm.dashboard.first_submain.widgetValues"
+                                    chart-labels="vm.dashboard.first_submain.widgetLabels"
+                                    chart-options="options"
+                                    height="327"
+                                    width="655"
+                                ></canvas>
+                                <canvas ng-if="vm.dashboard.first_submain.render.id == 'bar'"
+                                    id="bar"
+                                    class="chart chart-bar"
+                                    chart-data="vm.dashboard.first_submain.widgetValues"
+                                    chart-labels="vm.dashboard.first_submain.widgetLabels"
+                                    chart-options="options"
+                                    height="327"
+                                    width="655"
+                                ></canvas>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -111,9 +139,38 @@
                 <div class="portlet-body">
                     <div class="row">
                         <div class="col-md-12 text-center">
-                            <a ng-click="vm.AddGraphic(3)">
+                            <a ng-if="!vm.dashboardState.second_submain" ng-click="vm.AddGraphic(3)">
                                 <img src="html/assets/images/add_icon.png" height="200px">
                             </a>
+                            <div ng-if="vm.dashboardState.second_submain">
+                                <canvas ng-if="vm.dashboard.second_submain.render.id == 'pie'"
+                                    id="pie"
+                                    class="chart chart-pie"
+                                    chart-data="vm.dashboard.second_submain.widgetValues"
+                                    chart-labels="vm.dashboard.second_submain.widgetLabels"
+                                    chart-options="options"
+                                    height="327"
+                                    width="655"
+                                ></canvas>
+                                <canvas ng-if="vm.dashboard.second_submain.render.id == 'line'"
+                                    id="line"
+                                    class="chart chart-line"
+                                    chart-data="vm.dashboard.second_submain.widgetValues"
+                                    chart-labels="vm.dashboard.second_submain.widgetLabels"
+                                    chart-options="options"
+                                    height="327"
+                                    width="655"
+                                ></canvas>
+                                <canvas ng-if="vm.dashboard.second_submain.render.id == 'bar'"
+                                    id="bar"
+                                    class="chart chart-bar"
+                                    chart-data="vm.dashboard.second_submain.widgetValues"
+                                    chart-labels="vm.dashboard.second_submain.widgetLabels"
+                                    chart-options="options"
+                                    height="327"
+                                    width="655"
+                                ></canvas>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -130,9 +187,38 @@
                 <div class="portlet-body">
                     <div class="row">
                         <div class="col-md-12 text-center">
-                            <a ng-click="vm.AddGraphic(4)">
+                            <a ng-if="!vm.dashboardState.third_submain" ng-click="vm.AddGraphic(4)">
                                 <img src="html/assets/images/add_icon.png" height="200px">
                             </a>
+                            <div ng-if="vm.dashboardState.third_submain">
+                                <canvas ng-if="vm.dashboard.third_submain.render.id == 'pie'"
+                                    id="pie"
+                                    class="chart chart-pie"
+                                    chart-data="vm.dashboard.third_submain.widgetValues"
+                                    chart-labels="vm.dashboard.third_submain.widgetLabels"
+                                    chart-options="options"
+                                    height="327"
+                                    width="655"
+                                ></canvas>
+                                <canvas ng-if="vm.dashboard.third_submain.render.id == 'line'"
+                                    id="line"
+                                    class="chart chart-line"
+                                    chart-data="vm.dashboard.third_submain.widgetValues"
+                                    chart-labels="vm.dashboard.third_submain.widgetLabels"
+                                    chart-options="options"
+                                    height="327"
+                                    width="655"
+                                ></canvas>
+                                <canvas ng-if="vm.dashboard.third_submain.render.id == 'bar'"
+                                    id="bar"
+                                    class="chart chart-bar"
+                                    chart-data="vm.dashboard.third_submain.widgetValues"
+                                    chart-labels="vm.dashboard.third_submain.widgetLabels"
+                                    chart-options="options"
+                                    height="327"
+                                    width="655"
+                                ></canvas>
+                            </div>
                         </div>
                     </div>
                 </div>
