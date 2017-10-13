@@ -2,6 +2,7 @@
     <div class="col-md-12">
         <form role="form" ng-submit="vm.CreatePost()">
             <div class="portlet light portlet-fit ">
+                <button type="submit" class="btn btn-menu-header pull-right">Crear</button>
                 <div class="portlet-title">
                     <div class="caption">
                         <span class="caption-subject font-dark sbold">
@@ -54,6 +55,7 @@
                                     height="327"
                                     width="655"
                                 ></canvas>
+                                {{vm.postData.dashboard.main.data}}
                             </div>
                         </div>
                     </div>

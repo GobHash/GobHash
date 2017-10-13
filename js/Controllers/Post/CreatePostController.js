@@ -5,8 +5,8 @@
         .module('gobhash')
         .controller('CreatePostController', CreatePostController);
 
-    CreatePostController.$inject = ['$rootScope','$scope', 'EntitiesService', '$state'];
-    function CreatePostController($rootScope, $scope, EntitiesService, $state) {
+    CreatePostController.$inject = ['$rootScope','$scope', 'EntitiesService', '$state', 'PostService'];
+    function CreatePostController($rootScope, $scope, EntitiesService, $state, PostService) {
         let vm = this;
         $scope.UpdateHeader();
         $rootScope.SetGraphic = SetGraphic;
@@ -20,10 +20,22 @@
             title: '',
             description: '',
             dashboard: {
-                main: {},
-                first_submain: {},
-                second_submain: {},
-                third_submain: {},
+                main: {
+                    data: [],
+                    definition: {}
+                },
+                first_submain: {
+                    data: [],
+                    definition: {}
+                },
+                second_submain: {
+                    data: [],
+                    definition: {}
+                },
+                third_submain: {
+                    data: [],
+                    definition: {}
+                }
             }
 
         };
@@ -45,7 +57,13 @@
         vm.actualGraphic = {};
 
         function CreatePost() {
-            console.log('sup');
+            PostService.CreatePost(vm.postData, function (response) {
+                if (response.success) {
+                    FlashService.Success('Se creó el post', true);
+                } else {
+                    FlashService.Error('No se pudo crear el post');
+                }
+            });
         }
 
         function AddGraphic(type) {
