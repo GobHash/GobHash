@@ -5,20 +5,23 @@
         .module('gobhash')
         .factory('ProfileService', ProfileService);
 
-    ProfileService.$inject = ['$http', '$rootScope'];
-    function ProfileService($http, $rootScope) {
+    ProfileService.$inject = ['$http', '$rootScope', 'Upload'];
+    function ProfileService($http, $rootScope, Upload) {
         // var apiUrl = 'https://api.gobhash.com/v1';
         var apiUrl = 'https://api-dev.gobhash.com/v1';
-
-        // $rootScope.globals
 
         var service = {};
 
         service.GetProfile = GetProfile;
+        service.UpdateProfile = UpdateProfile;
+        service.GetProfilePicture = GetProfilePicture;
+        service.GetProfileStats = GetProfileStats;
+        service.UpdateProfilePicture = UpdateProfilePicture;
+        service.UpdateProfilePassword = UpdateProfilePassword;
 
         return service;
 
-        // Recuperación de usuario confirmada
+        // Obtener perfil del usuario
         function GetProfile(callback) {
             return $http.get(apiUrl + '/users/profile')
                 .then(function (response) {
@@ -30,6 +33,82 @@
             );
         }
 
+        // Obtener foto perfil del usuario
+        function GetProfilePicture(id, callback) {
+            return $http.get(apiUrl + '/users/' + id)
+                .then(function (response) {
+                    handleSuccess(response, callback);
+                })
+                .catch(function (error) {
+                    handleError(error, callback);
+                }
+            );
+        }
+
+        // Obtener estadisticas de usuario
+        function GetProfileStats(id, callback) {
+            return $http.get(apiUrl + '/stats/user/' + id)
+                .then(function (response) {
+                    handleSuccess(response, callback);
+                })
+                .catch(function (error) {
+                    handleError(error, callback);
+                }
+            );
+        }
+
+        // Actualizar información del perfil
+        function UpdateProfile(data, callback) {
+            return $http.post(
+                    apiUrl + '/users/profile',
+                    {
+                        biography: data.biography,
+                        occupation: data.occupation
+                    }
+                )
+                .then(function (response) {
+                    handleSuccess(response, callback);
+                })
+                .catch(function (error) {
+                    handleError(error, callback);
+                }
+            );
+        }
+
+        // Actualizar información del perfil
+        function UpdateProfilePicture(file, callback) {
+            file.upload = Upload.upload({
+                url: apiUrl + '/users/picture',
+                data: {
+                    profile: file
+                }
+            });
+
+            return file.upload.then(function (response) {
+                handleSuccess(response, callback);
+            })
+            .catch(function (error) {
+                handleError(error, callback);
+            });
+        }
+
+        // Actualizar la contraseña
+        function UpdateProfilePassword(data, callback) {
+            return $http.post(
+                    apiUrl + '/users/password/update',
+                    {
+                      currentPassword: data.currentPassword,
+                      password: data.password
+                    }
+                )
+                .then(function (response) {
+                    handleSuccess(response, callback);
+                })
+                .catch(function (error) {
+                    handleError(error, callback);
+                }
+            );
+        }
 
         // private functions
 

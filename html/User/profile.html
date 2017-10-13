@@ -7,11 +7,11 @@
                 <div class="portlet light profile-sidebar-portlet ">
                     <!-- SIDEBAR USERPIC -->
                     <div class="profile-userpic">
-                        <img src="html/assets/pages/media/profile/profile_user.jpg" class="img-responsive" alt=""> </div>
+                        <img src={{vm.profilePicture}} id="profile-image" class="img-responsive" height="250px" width="250px"> </div>
                     <!-- END SIDEBAR USERPIC -->
                     <!-- SIDEBAR USER TITLE -->
                     <div class="profile-usertitle">
-                        <div class="profile-usertitle-name"> Fitocs452 </div>
+                        <div class="profile-usertitle-name"> {{ vm.profileData.username }} </div>
                     </div>
                     <!-- END SIDEBAR USER TITLE -->
                     <!-- SIDEBAR BUTTONS -->
@@ -30,13 +30,17 @@
                 <div class="portlet light ">
                     <!-- STAT -->
                     <div class="row list-separated profile-stat">
-                        <div class="col-md-6 col-sm-6 col-xs-9">
-                            <div class="uppercase profile-stat-title"> 37 </div>
+                        <div class="col-md-4 col-sm-4 col-xs-6">
+                            <div class="uppercase profile-stat-title"> {{ vm.profileStats.posts }} </div>
                             <div class="uppercase profile-stat-text"> Posts </div>
                         </div>
-                        <div class="col-md-6 col-sm-6 col-xs-9">
-                            <div class="uppercase profile-stat-title"> 51 </div>
-                            <div class="uppercase profile-stat-text"> Likes </div>
+                        <div class="col-md-4 col-sm-4 col-xs-6">
+                            <div class="uppercase profile-stat-title"> {{ vm.profileStats.followers }} </div>
+                            <div class="uppercase profile-stat-text"> Followers </div>
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-6">
+                            <div class="uppercase profile-stat-title"> {{ vm.profileStats.following }} </div>
+                            <div class="uppercase profile-stat-text"> Following </div>
                         </div>
                     </div>
                     <!-- END STAT -->
@@ -55,94 +59,40 @@
                                     <span class="caption-subject font-dark bold uppercase">Perfil</span>
                                 </div>
                                 <ul class="nav nav-tabs">
-                                    <li class="active under">
-                                        <a href="#tab_1_1" data-toggle="tab">Información personal</a>
+                                    <li ng-class="vm.actualTab===1 ? 'active under' : 'under'">
+                                        <a ng-click="vm.ChangeTab(1)">Información personal</a>
                                     </li>
-<!--                                     <li>
-                                        <a href="#tab_1_2" data-toggle="tab">Change Avatar</a>
-                                    </li> -->
-                                    <li class="under">
-                                        <a href="#tab_1_3" data-toggle="tab">Contraseña</a>
+                                    <li ng-class="vm.actualTab===2 ? 'active under' : 'under'">
+                                        <a ng-click="vm.ChangeTab(2)">Change Avatar</a>
+                                    </li>
+                                    <li ng-class="vm.actualTab===3 ? 'active under' : 'under'">
+                                        <a ng-click="vm.ChangeTab(3)">Contraseña</a>
                                     </li>
                                 </ul>
                             </div>
                             <div class="portlet-body">
                                 <div class="tab-content">
                                     <!-- PERSONAL INFO TAB -->
-                                    <div class="tab-pane active" id="tab_1_1">
-                                        <form role="form" action="#">
-                                            <div class="form-group" ng-class="{ 'has-error': form.username.$dirty && form.username.$error.required }">
-                                                <label for="username">Nombre de usuario</label>
-                                                <input type="text" name="username" id="username" class="form-control" ng-model="vm.profileData.username" required />
-                                                <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Se requiere usuario</span>
-                                            </div>
+                                    <div class="tab-pane active">
+                                        <form ng-if="vm.actualTab===1" role="form" ng-submit="vm.UpdateProfileData()">
+                                            <profile-data profile=vm.profileData></profile-data>
+                                        </form>
+                                        <form ng-if="vm.actualTab===3" role="form" ng-submit="vm.ChangePassword()">
+                                            <password-change data=vm.passwordData></password-change>
+                                        </form>
 
-                                            <div class="form-group" ng-class="{ 'has-error': form.occupation.$dirty }">
-                                                <label for="occupation">Ocupación</label>
-                                                <input type="text" name="occupation" id="occupation" class="form-control" ng-model="vm.profileData.occupation"/>
-                                            </div>
-
-                                            <div class="form-group" ng-class="{ 'has-error': form.biography.$dirty }">
-                                                <label for="biography">Acerca de ti</label>
-                                                <input type="text" name="biography" id="biography" class="form-control" ng-model="vm.profileData.biography"/>
-                                            </div>
-
-                                            <div class="margiv-top-10">
-                                                <a href="javascript:;" class="btn btn-menu"> Guardar cambios </a>
-                                                <a href="javascript:;" class="btn default"> Cancelar </a>
+                                        <form ng-show="vm.actualTab===2" class="form-group" role="form">
+                                            <!-- <div><input type="file" id="fileInput" /></div> -->
+                                            <input type="file" ngf-select ng-model="vm.newProfilePicture" name="file"
+                                                 accept="image/*" ngf-max-size="2MB" required
+                                                 ngf-model-invalid="errorFile">
+                                            <img ngf-thumbnail="vm.newProfilePicture" class="img-responsive">
+                                            <br>
+                                            <div class="margin-top-10">
+                                                <button ng-click="vm.UpdateProfilePicture()" class="btn btn-menu"> Cambiar imagen </button>
                                             </div>
                                         </form>
                                     </div>
-                                    <!-- END PERSONAL INFO TAB -->
-                                    <!-- CHANGE AVATAR TAB -->
-<!--                                         <div class="tab-pane" id="tab_1_2">
-                                        <p> Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa
-                                            nesciunt laborum eiusmod. </p>
-                                        <form action="#" role="form">
-                                            <div class="form-group">
-                                                <div class="fileinput fileinput-new" data-provides="fileinput">
-                                                    <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
-                                                        <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image" alt="" /> </div>
-                                                    <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"> </div>
-                                                    <div>
-                                                        <span class="btn default btn-file">
-                                                            <span class="fileinput-new"> Select image </span>
-                                                            <span class="fileinput-exists"> Change </span>
-                                                            <input type="file" name="..."> </span>
-                                                        <a href="javascript:;" class="btn default fileinput-exists" data-dismiss="fileinput"> Remove </a>
-                                                    </div>
-                                                </div>
-                                                <div class="clearfix margin-top-10">
-                                                    <span class="label label-danger">NOTE! </span>
-                                                    <span>Attached image thumbnail is supported in Latest Firefox, Chrome, Opera, Safari and Internet Explorer 10 only </span>
-                                                </div>
-                                            </div>
-                                            <div class="margin-top-10">
-                                                <a href="javascript:;" class="btn green"> Submit </a>
-                                                <a href="javascript:;" class="btn default"> Cancel </a>
-                                            </div>
-                                        </form>
-                                    </div> -->
-                                    <!-- END CHANGE AVATAR TAB -->
-                                    <!-- CHANGE PASSWORD TAB -->
-                                    <div class="tab-pane" id="tab_1_3">
-                                        <form action="#">
-                                            <div class="form-group">
-                                                <label class="control-label">Contraseña actual</label>
-                                                <input type="password" class="form-control" /> </div>
-                                            <div class="form-group">
-                                                <label class="control-label">Nueva contraseña</label>
-                                                <input type="password" class="form-control" /> </div>
-                                            <div class="form-group">
-                                                <label class="control-label">Confirme nueva contraseña</label>
-                                                <input type="password" class="form-control" /> </div>
-                                            <div class="margin-top-10">
-                                                <a href="javascript:;" class="btn btn-menu"> Cambiar contraseña </a>
-                                                <a href="javascript:;" class="btn default"> Cancelar </a>
-                                            </div>
-                                        </form>
-                                    </div>
-                                    <!-- END CHANGE PASSWORD TAB -->
                                 </div>
                             </div>
                         </div>

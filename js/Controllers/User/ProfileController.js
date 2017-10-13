@@ -5,12 +5,27 @@
         .module('gobhash')
         .controller('ProfileController', ProfileController);
 
-    ProfileController.$inject = ['$rootScope', 'FlashService', 'ProfileService'];
-    function ProfileController($rootScope, FlashService, ProfileService) {
+    ProfileController.$inject = ['$scope', '$rootScope', 'FlashService', 'ProfileService', 'AuthenticationService', '$timeout'];
+    function ProfileController($scope, $rootScope, FlashService, ProfileService, AuthenticationService, $timeout) {
         var vm = this;
 
         vm.GetProfileData = GetProfileData;
+        vm.ChangeTab = ChangeTab;
+        vm.UpdateProfileData = UpdateProfileData;
+        vm.ChangePassword = ChangePassword;
+        vm.UpdateProfilePicture = UpdateProfilePicture;
+
         vm.profileData = {};
+        vm.profilePicture = '';
+        vm.newProfilePicture = '';
+        vm.profileStats = {};
+        vm.passwordData = {};
+
+        // Tres tabs:
+        vm.actualTab = 1;
+        // 1. Información del perfil
+        // 2. Cambio de contraseña
+        // 3. Cambio de foto de perfil
 
         vm.GetProfileData();
 
@@ -20,7 +35,98 @@
                     vm.profileData = response.response.data;
                 }
             );
+
+            ProfileService.GetProfilePicture(
+                $rootScope.globals.currentUser.id,
+                function(response) {
+                    vm.profilePicture = response.response.data.picture.location;
+                    angular.element(document.querySelector('#profile-image')).css('height', '250px');
+                    angular.element(document.querySelector('#profile-image')).css('width', '250px');
+                }
+            );
+
+            ProfileService.GetProfileStats(
+                $rootScope.globals.currentUser.id,
+                function(response) {
+                    vm.profileStats = response.response.data;
+                }
+            );
         }
+
+        function ChangeTab(tabNumber) {
+            vm.actualTab = tabNumber;
+            if (vm.actualTab === 2 || vm.actualTab === '2') {
+                angular.element(document.querySelector('#fileInput')).on('change',handleFileSelect);
+            }
+        }
+
+        function UpdateProfileData() {
+            ProfileService.UpdateProfile(
+                vm.profileData,
+                function(response) {
+                    if (response.success) {
+                        FlashService.Success('Información actualizada', true);
+                        vm.GetProfileData();
+                    } else {
+                        FlashService.Error('No se actualizó información');
+                        vm.dataLoading = false;
+                    }
+                }
+            );
+        }
+
+        function UpdateProfilePicture() {
+            vm.profilePicture = vm.newProfilePicture;
+            angular.element(document.querySelector('#profile-image')).css('height', '250px');
+            angular.element(document.querySelector('#profile-image')).css('width', '250px');
+
+            ProfileService.UpdateProfilePicture(
+                vm.newProfilePicture,
+                function(response) {
+                    if (response.success) {
+                        FlashService.Success('Foto de perfil actualizada', true);
+                        vm.newProfilePicture = '';
+                        vm.GetProfileData();
+                    } else {
+                        FlashService.Error('La foto de perfil no se actualizó');
+                        vm.GetProfileData();
+                    }
+                }
+            );
+        }
+
+        function ChangePassword() {
+            if (vm.passwordData.password === vm.passwordData.repassword) {
+                ProfileService.UpdateProfilePassword(
+                    {
+                        currentPassword: vm.passwordData.currentPassword,
+                        password: vm.passwordData.password
+                    },
+                    function(response) {
+                        if (response.success) {
+                            FlashService.Success('Contraseña actualizada', true);
+                        } else {
+                            FlashService.Error('La contraseña no se actualizó');
+                        }
+                    }
+                );
+            } else {
+                FlashService.Error('Vuelva a intentarlo');
+            }
+        }
+
+        var handleFileSelect = function(evt) {
+            var file = evt.currentTarget.files[0];
+            var reader = new FileReader();
+
+            reader.onload = function (evt) {
+                $scope.$apply(function() {
+                    vm.newProfilePicture = evt.target.result;
+                });
+            };
+
+            reader.readAsDataURL(file);
+        };
     }
 
 })();

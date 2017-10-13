@@ -10,6 +10,7 @@
                 'angularModalService',
                 'ui.bootstrap',
                 'chart.js',
+                'ngFileUpload',
                 'gobhash',
                 'Widgets',
                 'blockUI'

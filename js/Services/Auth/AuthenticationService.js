@@ -5,13 +5,14 @@
         .module('gobhash')
         .factory('AuthenticationService', AuthenticationService);
 
-    AuthenticationService.$inject = ['$http', '$cookies', '$rootScope', '$timeout', 'UserService'];
-    function AuthenticationService($http, $cookies, $rootScope, $timeout, UserService) {
+    AuthenticationService.$inject = ['$http', '$cookies', '$rootScope', '$timeout', 'UserService', '$location'];
+    function AuthenticationService($http, $cookies, $rootScope, $timeout, UserService, $location) {
         var service = {};
         // var apiUrl = 'https://api.gobhash.com/v1';
         var apiUrl = 'https://api-dev.gobhash.com/v1';
 
         service.Login = Login;
+        service.Logout = Logout;
         service.SetCredentials = SetCredentials;
         service.ClearCredentials = ClearCredentials;
 
@@ -27,11 +28,12 @@
                });
         }
 
-        function SetCredentials(username, password, token) {
+        function SetCredentials(id, username, password, token) {
             var authdata = Base64.encode(username + ':' + password);
 
             $rootScope.globals = {
                 currentUser: {
+                    id: id,
                     username: username,
                     token: token
                 }
@@ -51,6 +53,11 @@
             $rootScope.globals = {};
             $cookies.remove('globals');
             $http.defaults.headers.common.Authorization = 'Basic';
+        }
+
+        function Logout() {
+            $http.defaults.headers.common['Authorization'] = '';
+            $location.path('/auth/login');
         }
 
         function handleSuccess(res, callback) {
