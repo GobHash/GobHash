@@ -36,7 +36,7 @@
                             vm.password,
                             response.response.data.token
                         );
-                        $location.path('/');
+                        $location.path('/feed');
                     } else {
                         FlashService.Error('Usuario o contraseña incorrecta');
                         vm.dataLoading = false;
