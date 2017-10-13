@@ -10,8 +10,6 @@
         // var apiUrl = 'https://api.gobhash.com/v1';
         var apiUrl = 'https://api-dev.gobhash.com/v1';
 
-        // $rootScope.globals
-
         var service = {};
 
         service.GetProfile = GetProfile;
@@ -79,19 +77,22 @@
 
         // Actualizar información del perfil
         function UpdateProfilePicture(picture, callback) {
-            return $http.post(
-                    apiUrl + '/users/picture',
-                    {
-                        profile: picture,
-                    }
-                )
-                .then(function (response) {
-                    handleSuccess(response, callback);
-                })
-                .catch(function (error) {
-                    handleError(error, callback);
-                }
-            );
+            // file.upload = Upload.upload({
+            //     url: apiUrl + '/users/picture',
+            //     data: {profile: picture},
+            // });
+
+            // file.upload.then(function (response) {
+            //   $timeout(function () {
+            //     file.result = response.data;
+            //   });
+            // }, function (response) {
+            //   if (response.status > 0)
+            //     vm.errorMsg = response.status + ': ' + response.data;
+            // }, function (evt) {
+            //   // Math.min is to fix IE which reports 200% sometimes
+            //   file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
+            // });
         }
 
         // Actualizar la contraseña

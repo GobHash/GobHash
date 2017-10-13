@@ -81,13 +81,21 @@
                                             <password-change data=vm.passwordData></password-change>
                                         </form>
 
-                                        <div ng-show="vm.actualTab===2" class="form-group">
-                                            <div><input type="file" id="fileInput" /></div>
+                                        <form ng-show="vm.actualTab===2" class="form-group" role="form">
+                                            <!-- <div><input type="file" id="fileInput" /></div> -->
+                                            <br>Photo:
+                                                  <input type="file" ngf-select ng-model="vm.newProfilePicture" name="file"    
+                                                         accept="image/*" ngf-max-size="2MB" required
+                                                         ngf-model-invalid="errorFile">
+                                                  <img ngf-thumbnail="vm.newProfilePicture" class="thumb">
+                                                  <br>
+                                                  <button ng-click="vm.UploadPic(vm.newProfilePicture)">Submit</button>
+
                                             <img src={{vm.newProfilePicture}} class="img-responsive" alt="">
                                             <div class="margin-top-10">
                                                 <button ng-click="vm.UpdateProfilePicture()" class="btn btn-menu"> Cambiar imagen </button>
                                             </div>
-                                        </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>

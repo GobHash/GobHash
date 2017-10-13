@@ -5,8 +5,8 @@
         .module('gobhash')
         .controller('ProfileController', ProfileController);
 
-    ProfileController.$inject = ['$scope', '$rootScope', 'FlashService', 'ProfileService', 'AuthenticationService'];
-    function ProfileController($scope, $rootScope, FlashService, ProfileService, AuthenticationService) {
+    ProfileController.$inject = ['$scope', '$rootScope', 'FlashService', 'ProfileService', 'AuthenticationService', 'Upload', '$timeout'];
+    function ProfileController($scope, $rootScope, FlashService, ProfileService, AuthenticationService, Upload, $timeout) {
         var vm = this;
 
         vm.GetProfileData = GetProfileData;
@@ -19,7 +19,7 @@
         vm.profilePicture = '';
         vm.newProfilePicture = '';
         vm.profileStats = {};
-        vm.passwordData = {}
+        vm.passwordData = {};
 
         // Tres tabs:
         vm.actualTab = 1;
@@ -28,6 +28,27 @@
         // 3. Cambio de foto de perfil
 
         vm.GetProfileData();
+
+        vm.UploadPic = UploadPic;
+
+        function UploadPic(file) {
+            file.upload = Upload.upload({
+                url: 'https://api-dev.gobhash.com/v1/users/picture',
+                data: {profile: vm.newProfilePicture},
+            });
+
+            file.upload.then(function (response) {
+              $timeout(function () {
+                file.result = response.data;
+              });
+            }, function (response) {
+              if (response.status > 0)
+                vm.errorMsg = response.status + ': ' + response.data;
+            }, function (evt) {
+              // Math.min is to fix IE which reports 200% sometimes
+              file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
+            });
+        }
 
         function GetProfileData() {
             ProfileService.GetProfile(
@@ -78,18 +99,18 @@
             angular.element(document.querySelector('#profile-image')).css('height', '250px');
             angular.element(document.querySelector('#profile-image')).css('width', '250px');
 
-            ProfileService.UpdateProfilePicture(
-                vm.newProfilePicture,
-                function(response) {
-                    if (response.success) {
-                        FlashService.Success('Foto de perfil actualizada', true);
-                        vm.newProfilePicture = '';
-                    } else {
-                        FlashService.Error('La foto de perfil no se actualizó');
-                        vm.GetProfileData();
-                    }
-                }
-            );
+            // ProfileService.UpdateProfilePicture(
+            //     vm.newProfilePicture,
+            //     function(response) {
+            //         if (response.success) {
+            //             FlashService.Success('Foto de perfil actualizada', true);
+            //             vm.newProfilePicture = '';
+            //         } else {
+            //             FlashService.Error('La foto de perfil no se actualizó');
+            //             vm.GetProfileData();
+            //         }
+            //     }
+            // );
         }
 
         function ChangePassword() {
