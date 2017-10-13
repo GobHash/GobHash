@@ -8,6 +8,7 @@
     ProfileController.$inject = ['$scope', '$rootScope', 'FlashService', 'ProfileService', 'AuthenticationService', '$timeout'];
     function ProfileController($scope, $rootScope, FlashService, ProfileService, AuthenticationService, $timeout) {
         var vm = this;
+        $scope.UpdateHeader();
 
         vm.GetProfileData = GetProfileData;
         vm.ChangeTab = ChangeTab;
@@ -55,9 +56,6 @@
 
         function ChangeTab(tabNumber) {
             vm.actualTab = tabNumber;
-            if (vm.actualTab === 2 || vm.actualTab === '2') {
-                angular.element(document.querySelector('#fileInput')).on('change',handleFileSelect);
-            }
         }
 
         function UpdateProfileData() {
@@ -114,19 +112,6 @@
                 FlashService.Error('Vuelva a intentarlo');
             }
         }
-
-        var handleFileSelect = function(evt) {
-            var file = evt.currentTarget.files[0];
-            var reader = new FileReader();
-
-            reader.onload = function (evt) {
-                $scope.$apply(function() {
-                    vm.newProfilePicture = evt.target.result;
-                });
-            };
-
-            reader.readAsDataURL(file);
-        };
     }
 
 })();

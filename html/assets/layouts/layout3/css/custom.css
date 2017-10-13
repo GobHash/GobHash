@@ -246,6 +246,12 @@ html,body{
   color: white;
 }
 
+.btn-menu-header {
+  background: #ffa10e !important;
+  color: white;
+  margin-top: 10px;
+}
+
 li.active.under{
   border-bottom: 4px solid #ffa10e !important;
 }

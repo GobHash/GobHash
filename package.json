@@ -29,6 +29,7 @@
     "angular-animate": "^1.6.0",
     "angular-chart.js": "^1.1.1",
     "angular-cookies": "^1.6.0",
+    "angular-flash-alert": "^2.5.0",
     "angular-modal-service": "^0.12.1",
     "angular-route": "^1.6.0",
     "angular-sanitize": "^1.6.0",

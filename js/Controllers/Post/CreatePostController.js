@@ -6,6 +6,7 @@
         .controller('CreatePostController', CreatePostController);
 
     CreatePostController.$inject = ['$rootScope'];
-    function CreatePostController($rootScope) {}
+    function CreatePostController($rootScope) {
 
+    }
 })();

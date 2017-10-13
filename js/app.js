@@ -72,6 +72,22 @@
                 controller: 'ProfileController',
                 controllerAs: 'vm',
                 templateUrl: 'html/User/profile.html'
+            })
+
+            .state('feed', {
+                parent: 'index',
+                url: 'feed',
+                controller: 'FeedController',
+                controllerAs: 'vm',
+                templateUrl: 'html/Feed/feed.html'
+            })
+
+            .state('add_post', {
+                parent: 'index',
+                url: 'feed/post',
+                controller: 'CreatePostController',
+                controllerAs: 'vm',
+                templateUrl: 'html/Post/create.html'
             });
     }
 

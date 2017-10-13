@@ -48,7 +48,7 @@
                             <div class="hor-menu  ">
                                 <ul class="nav navbar-nav">
                                     <li aria-haspopup="true" class="active">
-                                        <a class="btn-menu" href="/feed"> Mis #
+                                        <a class="btn-menu" ui-sref="feed"> Mis #
                                             <span class="arrow"></span>
                                         </a>
                                     </li>
@@ -57,11 +57,11 @@
                                             <span class="arrow"></span>
                                         </a>
                                     </li>
-                                    <li class="active">
+<!--                                     <li class="active">
                                         <a class="btn-menu" href="javascript:;"> Top #
                                             <span class="arrow"></span>
                                         </a>
-                                    </li>
+                                    </li> -->
                                 </ul>
                             </div>
                             <!-- END MEGA MENU -->
@@ -89,6 +89,7 @@
                                     </h1>
                                 </div>
                                 <!-- END PAGE TITLE -->
+                                <a ng-if="vm.stateMapping.feed" ui-sref="add_post" class="btn btn-menu-header pull-right">Agregar post</a>
                             </div>
                         </div>
                         <!-- END PAGE HEAD-->
