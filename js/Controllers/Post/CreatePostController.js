@@ -5,8 +5,8 @@
         .module('gobhash')
         .controller('CreatePostController', CreatePostController);
 
-    CreatePostController.$inject = ['$rootScope','$scope', 'EntitiesService', '$state', 'PostService'];
-    function CreatePostController($rootScope, $scope, EntitiesService, $state, PostService) {
+    CreatePostController.$inject = ['$rootScope','$scope', 'EntitiesService', '$state', 'PostService', 'FlashService'];
+    function CreatePostController($rootScope, $scope, EntitiesService, $state, PostService, FlashService) {
         let vm = this;
         $scope.UpdateHeader();
         $rootScope.SetGraphic = SetGraphic;
@@ -67,18 +67,14 @@
         }
 
         function AddGraphic(type) {
-            console.log('Agregar gráfico tipo: ' + type);
             vm.actualGraphic.number = type;
             $state.go('widgetIndex');
-            // vm.SetGraphic();
-            console.log('End Graphic');
         }
 
         // vm.dashboard.main.widgetType;
 
         function SetGraphic() {
             if (vm.actualGraphic.number === 1) {
-                console.log('Is Main Graphic');
                 vm.dashboard.main = vm.GetPreview();
 
                 vm.postData.dashboard.main.definition = vm.dashboard.main.definition;
@@ -86,7 +82,6 @@
 
                 vm.dashboardState.hasMain = true;
             } else if (vm.actualGraphic.number === 2) {
-                console.log('Is First Graphic');
                 vm.dashboard.first_submain = vm.GetPreview();
 
                 vm.postData.dashboard.first_submain.definition = vm.dashboard.first_submain.definition;
@@ -94,7 +89,6 @@
 
                 vm.dashboardState.first_submain = true;
             } else if (vm.actualGraphic.number === 3) {
-                console.log('Is Second Graphic');
                 vm.dashboard.second_submain = vm.GetPreview();
 
                 vm.postData.dashboard.second_submain.definition = vm.dashboard.second_submain.definition;
@@ -102,7 +96,6 @@
 
                 vm.dashboardState.second_submain = true;
             } else if (vm.actualGraphic.number === 4) {
-                console.log('Is Third Graphic');
                 vm.dashboard.third_submain = vm.GetPreview();
 
                 vm.postData.dashboard.third_submain.definition = vm.dashboard.third_submain.definition;
@@ -112,10 +105,10 @@
             } else {
                 console.log('Not supported!');
             }
-            console.log('postData');
-            console.log(vm.postData);
-            console.log('dashboard');
-            console.log(vm.dashboard);
+            // console.log('postData');
+            // console.log(vm.postData);
+            // console.log('dashboard');
+            // console.log(vm.dashboard);
         }
 
         function GetPreview() {
