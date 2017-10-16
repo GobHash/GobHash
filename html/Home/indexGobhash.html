@@ -23,11 +23,11 @@
                                     <li class="droddown dropdown-separator">
                                         <span class="separator"></span>
                                     </li>
-                                    <li class="dropdown dropdown-user dropdown-dark">
-                                        <img alt="" class="img-circle" src="html/assets/layouts/layout3/img/avatar9.jpg">
+                                    <li class="push-down">
+                                        <img src={{vm.userpicture}} id="user-image" class="img-circle">
                                         <span style="color: white;">{{ vm.currentUser.username }}</span>
                                     </li>
-                                    <li class="dropdown dropdown-user">
+                                    <li>
                                         <a style="color: white"; ng-click="vm.Logout()">
                                             <i class="icon-logout"></i>
                                         </a>
