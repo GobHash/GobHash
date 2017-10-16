@@ -56,6 +56,11 @@
 
         vm.actualGraphic = {};
 
+        vm.graphics = {
+            req: [],
+            order: []
+        }
+
         function CreatePost() {
             PostService.CreatePost(vm.postData, function (response) {
                 if (response.success) {
@@ -75,40 +80,36 @@
 
         function SetGraphic() {
             if (vm.actualGraphic.number === 1) {
-                vm.dashboard.main = vm.GetPreview();
+                vm.dashboard.main = angular.copy(vm.GetPreview());
 
-                vm.postData.dashboard.main.definition = vm.dashboard.main.definition;
-                vm.postData.dashboard.main.data = vm.dashboard.main.widgetData;
+                vm.postData.dashboard.main.definition = angular.copy(vm.dashboard.main.definition);
+                vm.postData.dashboard.main.data = angular.copy(vm.dashboard.main.widgetData);
 
                 vm.dashboardState.hasMain = true;
             } else if (vm.actualGraphic.number === 2) {
-                vm.dashboard.first_submain = vm.GetPreview();
+                vm.dashboard.first_submain = angular.copy(vm.GetPreview());
 
-                vm.postData.dashboard.first_submain.definition = vm.dashboard.first_submain.definition;
-                vm.postData.dashboard.first_submain.data = vm.dashboard.first_submain.widgetData;
+                vm.postData.dashboard.first_submain.definition = angular.copy(vm.dashboard.first_submain.definition);
+                vm.postData.dashboard.first_submain.data = angular.copy(vm.dashboard.first_submain.widgetData);
 
                 vm.dashboardState.first_submain = true;
             } else if (vm.actualGraphic.number === 3) {
-                vm.dashboard.second_submain = vm.GetPreview();
+                vm.dashboard.second_submain = angular.copy(vm.GetPreview());
 
-                vm.postData.dashboard.second_submain.definition = vm.dashboard.second_submain.definition;
-                vm.postData.dashboard.second_submain.data = vm.dashboard.second_submain.widgetData;
+                vm.postData.dashboard.second_submain.definition = angular.copy(vm.dashboard.second_submain.definition);
+                vm.postData.dashboard.second_submain.data = angular.copy(vm.dashboard.second_submain.widgetData);
 
                 vm.dashboardState.second_submain = true;
             } else if (vm.actualGraphic.number === 4) {
-                vm.dashboard.third_submain = vm.GetPreview();
+                vm.dashboard.third_submain = angular.copy(vm.GetPreview());
 
-                vm.postData.dashboard.third_submain.definition = vm.dashboard.third_submain.definition;
-                vm.postData.dashboard.third_submain.data = vm.dashboard.third_submain.widgetData;
+                vm.postData.dashboard.third_submain.definition = angular.copy(vm.dashboard.third_submain.definition);
+                vm.postData.dashboard.third_submain.data = angular.copy(vm.dashboard.third_submain.widgetData);
 
                 vm.dashboardState.third_submain = true;
             } else {
                 console.log('Not supported!');
             }
-            // console.log('postData');
-            // console.log(vm.postData);
-            // console.log('dashboard');
-            // console.log(vm.dashboard);
         }
 
         function GetPreview() {

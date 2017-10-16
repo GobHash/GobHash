@@ -1,0 +1,179 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="portlet light portlet-fit ">
+            <div class="portlet-title">
+                <div class="caption">
+                    <span class="caption-subject font-dark sbold">
+                        {{ vm.postData.title }}
+                    <hr>
+                        Por Usuario: {{ vm.username }}
+                    </span>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <div class="row" style="margin-top: 10px;">
+                    <div class="col-md-12 text-center">
+                        <canvas ng-if="vm.postData.dashboard.main.definition.widgetType.id == 1"
+                            id="pie"
+                            class="chart chart-pie"
+                            chart-data="vm.postData.dashboard.main.data[0]"
+                            chart-labels="vm.postData.dashboard.main.data[1]"
+                            chart-options="options"
+                            height="250"
+                        ></canvas>
+                        <canvas ng-if="vm.postData.dashboard.main.definition.widgetType.id == 2"
+                            id="line"
+                            class="chart chart-line"
+                            chart-data="vm.postData.dashboard.main.data[0]"
+                            chart-labels="vm.postData.dashboard.main.data[1]"
+                            chart-options="options"
+                            height="250"
+                        ></canvas>
+                        <canvas ng-if="vm.postData.dashboard.main.definition.widgetType.id == 3"
+                            id="bar"
+                            class="chart chart-bar"
+                            chart-data="vm.postData.dashboard.main.data[0]"
+                            chart-labels="vm.postData.dashboard.main.data[1]"
+                            chart-options="options"
+                            height="250"
+                        ></canvas>
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 10px;">
+                    <div class="col-md-4 text-center">
+                        <!-- <show-graphic ng-if="vm.dashboard.hasFirst" data=vm.postData.dashboard.first_submain></show-graphic> -->
+                        <div ng-if="vm.dashboard.hasFirst">
+                            <canvas ng-if="vm.postData.dashboard.first_submain.definition.widgetType.id == 1"
+                                id="pie"
+                                class="chart chart-pie"
+                                chart-data="vm.postData.dashboard.first_submain.data[0]"
+                                chart-labels="vm.postData.dashboard.first_submain.data[1]"
+                                chart-options="options"
+                                height="250"
+                            ></canvas>
+                            <canvas ng-if="vm.postData.dashboard.first_submain.definition.widgetType.id == 2"
+                                id="line"
+                                class="chart chart-line"
+                                chart-data="vm.postData.dashboard.first_submain.data[0]"
+                                chart-labels="vm.postData.dashboard.first_submain.data[1]"
+                                chart-options="options"
+                                height="250"
+                            ></canvas>
+                            <canvas ng-if="vm.postData.dashboard.first_submain.definition.widgetType.id == 3"
+                                id="bar"
+                                class="chart chart-bar"
+                                chart-data="vm.postData.dashboard.first_submain.data[0]"
+                                chart-labels="vm.postData.dashboard.first_submain.data[1]"
+                                chart-options="options"
+                                height="250"
+                            ></canvas>
+                        </div>
+                        <img ng-if="!vm.dashboard.hasFirst" src="html/assets/images/add_icon.png" height="200px">
+                    </div>
+                    <div class="col-md-4 text-center">
+                        <!-- <show-graphic ng-if="vm.dashboard.hasSecond" data=vm.postData.dashboard.second_submain></show-graphic> -->
+                        <div ng-if="vm.dashboard.hasSecond">
+                            <canvas ng-if="vm.postData.dashboard.second_submain.definition.widgetType.id == 1"
+                                id="pie"
+                                class="chart chart-pie"
+                                chart-data="vm.postData.dashboard.second_submain.data[0]"
+                                chart-labels="vm.postData.dashboard.second_submain.data[1]"
+                                chart-options="options"
+                                height="250"
+                            ></canvas>
+                            <canvas ng-if="vm.postData.dashboard.second_submain.definition.widgetType.id == 2"
+                                id="line"
+                                class="chart chart-line"
+                                chart-data="vm.postData.dashboard.second_submain.data[0]"
+                                chart-labels="vm.postData.dashboard.second_submain.data[1]"
+                                chart-options="options"
+                                height="250"
+                            ></canvas>
+                            <canvas ng-if="vm.postData.dashboard.second_submain.definition.widgetType.id == 3"
+                                id="bar"
+                                class="chart chart-bar"
+                                chart-data="vm.postData.dashboard.second_submain.data[0]"
+                                chart-labels="vm.postData.dashboard.second_submain.data[1]"
+                                chart-options="options"
+                                height="250"
+                            ></canvas>
+                        </div>
+                        <img ng-if="!vm.dashboard.hasSecond" src="html/assets/images/add_icon.png" height="200px">
+                    </div>
+                    <div class="col-md-4 text-center">
+                        <!-- <show-graphic ng-if="vm.dashboard.hasThird" data=vm.postData.dashboard.third_submain></show-graphic> -->
+                        <div ng-if="vm.dashboard.hasThird">
+                            <canvas ng-if="vm.postData.dashboard.third_submain.definition.widgetType.id == 1"
+                                id="pie"
+                                class="chart chart-pie"
+                                chart-data="vm.postData.dashboard.third_submain.data[0]"
+                                chart-labels="vm.postData.dashboard.third_submain.data[1]"
+                                chart-options="options"
+                                height="250"
+                            ></canvas>
+                            <canvas ng-if="vm.postData.dashboard.third_submain.definition.widgetType.id == 2"
+                                id="line"
+                                class="chart chart-line"
+                                chart-data="vm.postData.dashboard.third_submain.data[0]"
+                                chart-labels="vm.postData.dashboard.third_submain.data[1]"
+                                chart-options="options"
+                                height="250"
+                            ></canvas>
+                            <canvas ng-if="vm.postData.dashboard.third_submain.definition.widgetType.id == 3"
+                                id="bar"
+                                class="chart chart-bar"
+                                chart-data="vm.postData.dashboard.third_submain.data[0]"
+                                chart-labels="vm.postData.dashboard.third_submain.data[1]"
+                                chart-options="options"
+                                height="250"
+                            ></canvas>
+                        </div>
+                        <img ng-if="!vm.dashboard.hasThird" src="html/assets/images/add_icon.png" height="200px">
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 10px;">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Descripción</div>
+                      <div class="panel-body">
+                        <span align="justify" class="caption-subject font-dark sbold">
+                            {{ vm.postData.description }}
+                        </span>
+                      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="portlet light portlet-fit ">
+            <div class="portlet-title">
+                Deja tu comentario
+            </div>
+            <div class="portlet-body">
+                <form role="form" ng-submit="vm.AddComment()">
+                    <div class="form-group" ng-class="{ 'has-error': form.new_comment.$dirty }">
+                        <textarea name="new_comment" id="new_comment" class="form-control" ng-model="vm.new_comment"/></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-menu">Agregar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h3>Comentarios</h3>
+<div ng-repeat="comment in vm.postData.comments" class="row">
+    <div class="col-md-12">
+        <div class="portlet light portlet-fit ">
+            <div class="portlet-title">
+                By: {{ comment.user.username }}
+            </div>
+            <div class="portlet-body">
+                {{ comment.content }}
+            </div>
+        </div>
+    </div>
+</div>

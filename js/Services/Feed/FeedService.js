@@ -12,6 +12,8 @@
         var service = {};
 
         service.GetPosts = GetPosts;
+        service.GetPost = GetPost;
+        service.AddPostComment = AddPostComment;
 
         return service;
 
@@ -26,6 +28,38 @@
                 }
             );
         }
+
+        // Obtener un post específico
+        function GetPost(id, callback) {
+            return $http.get(
+                    apiUrl + '/post/' + id
+                )
+                .then(function (response) {
+                    handleSuccess(response, callback);
+                })
+                .catch(function (error) {
+                    handleError(error, callback);
+                }
+            );
+        }
+
+        function AddPostComment(data, callback) {
+            return $http.post(
+                    apiUrl + '/post/comment',
+                    {
+                        postId: data.postId,
+                        content: data.content
+                    }
+                )
+                .then(function (response) {
+                    handleSuccess(response, callback);
+                })
+                .catch(function (error) {
+                    handleError(error, callback);
+                }
+            );
+        }
+
         // private functions
 
         function handleSuccess(res, callback) {

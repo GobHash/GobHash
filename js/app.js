@@ -82,6 +82,14 @@
                 templateUrl: 'html/Feed/feed.html'
             })
 
+            .state('show_post', {
+                parent: 'index',
+                url: 'feed/post/{postId}',
+                controller: 'ShowPostController',
+                controllerAs: 'vm',
+                templateUrl: 'html/Feed/Post/single.html'
+            })
+
             .state('add_post', {
                 parent: 'index',
                 url: 'feed/post',

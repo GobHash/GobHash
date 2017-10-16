@@ -1,0 +1,25 @@
+<h2>Si llega: {{ vm.data.definition.widgetType.id }}</h2>
+<canvas ng-if="vm.data.definition.widgetType.id == 1"
+    id="pie"
+    class="chart chart-pie"
+    chart-data="vm.data.data[0]"
+    chart-labels="vm.data.data[1]"
+    chart-options="options"
+    height="250"
+></canvas>
+<canvas ng-if="vm.data.definition.widgetType.id == 2"
+    id="line"
+    class="chart chart-line"
+    chart-data="{{vm.data.data[0]}}"
+    chart-labels="{{vm.data.data[1]}}"
+    chart-options="options"
+    height="250"
+></canvas>
+<canvas ng-if="vm.data.definition.widgetType.id == 3"
+    id="bar"
+    class="chart chart-bar"
+    chart-data="vm.data.data[0]"
+    chart-labels="vm.data.data[1]"
+    chart-options="options"
+    height="250"
+></canvas>
