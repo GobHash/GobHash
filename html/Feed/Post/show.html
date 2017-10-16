@@ -1,0 +1,55 @@
+<div class="portlet light portlet-fit ">
+    <div class="portlet-title">
+        <div class="caption">
+            <span class="caption-subject font-dark sbold uppercase">{{ vm.data.title }}</span>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="row">
+            <div class="col-md-8">
+                <canvas ng-if="vm.data.dashboard.main.definition.widgetType.id == 1"
+                    id="pie"
+                    class="chart chart-pie"
+                    chart-data="vm.data.dashboard.main.data[0]"
+                    chart-labels="vm.data.dashboard.main.data[1]"
+                    chart-options="options"
+                    height="250"
+                ></canvas>
+                <canvas ng-if="vm.data.dashboard.main.definition.widgetType.id == 2"
+                    id="line"
+                    class="chart chart-line"
+                    chart-data="vm.data.dashboard.main.data[0]"
+                    chart-labels="vm.data.dashboard.main.data[1]"
+                    chart-options="options"
+                    height="250"
+                ></canvas>
+                <canvas ng-if="vm.data.dashboard.main.definition.widgetType.id == 3"
+                    id="bar"
+                    class="chart chart-bar"
+                    chart-data="vm.data.dashboard.main.data[0]"
+                    chart-labels="vm.data.dashboard.main.data[1]"
+                    chart-options="options"
+                    height="250"
+                ></canvas>
+            </div>
+            <div class="col-md-4">
+                <span align="justify" class="caption-subject font-dark sbold">
+                    {{ vm.data.description }}
+                </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8">
+                <div class="col-md-6 text-center">
+                    <label><i class="fa fa-comment fa-lg" aria-hidden="true"> Comentarios</i></label>
+                </div>
+                <div class="col-md-6 text-center">
+                    <label><i class="fa fa-hashtag fa-lg" aria-hidden="true"> 200</i></label>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <a href="/feed/1" class="btn btn-menu pull-right">Ver más</a>
+            </div>
+        </div>
+    </div>
+</div>
