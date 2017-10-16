@@ -7,12 +7,12 @@
 
     RecoverController.$inject = [
         'UserService',
-        '$location',
+        '$state',
         '$rootScope',
         'FlashService'
     ];
 
-    function RecoverController(UserService, $location, $rootScope, FlashService) {
+    function RecoverController(UserService, $state, $rootScope, FlashService) {
         var vm = this;
 
         vm.recover = {};
@@ -25,7 +25,7 @@
             UserService.ResetPassword(vm.recover.username, vm.recover.email, function (response) {
                 if (response.success) {
                     FlashService.Success('Revisa tu correo electrónico', true);
-                    $location.path('/login');
+                    $state.go('login');
                 } else {
                     FlashService.Error('No se pudo recuperar contraseña');
                     vm.dataLoading = false;

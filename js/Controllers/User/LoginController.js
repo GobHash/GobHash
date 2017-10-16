@@ -6,12 +6,12 @@
         .controller('LoginController', LoginController);
 
     LoginController.$inject = [
-        '$location',
+        '$state',
         'AuthenticationService',
         'FlashService'
     ];
 
-    function LoginController($location, AuthenticationService, FlashService) {
+    function LoginController($state, AuthenticationService, FlashService) {
         var vm = this;
 
         vm.login = login;
@@ -36,7 +36,7 @@
                             vm.password,
                             response.response.data.token
                         );
-                        $location.path('/feed');
+                        $state.go('feed');
                     } else {
                         FlashService.Error('Usuario o contraseña incorrecta');
                         vm.dataLoading = false;

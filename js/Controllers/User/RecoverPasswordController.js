@@ -7,13 +7,13 @@
 
     RecoverPasswordController.$inject = [
         'UserService',
-        '$location',
+        '$state',
         '$rootScope',
         '$stateParams',
         'FlashService'
     ];
 
-    function RecoverPasswordController(UserService, $location, $rootScope, $stateParams, FlashService) {
+    function RecoverPasswordController(UserService, $state, $rootScope, $stateParams, FlashService) {
         var vm = this;
 
         vm.recover = {};
@@ -42,7 +42,7 @@
                 function (response) {
                     if (response.success) {
                         FlashService.Success('Contraseña actualizada', true);
-                        $location.path('/login');
+                        $state.go('login');
                     } else {
                         FlashService.Error('No se actualizó contraseña');
                         vm.dataLoading = false;

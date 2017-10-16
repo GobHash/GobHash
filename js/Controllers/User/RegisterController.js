@@ -7,12 +7,12 @@
 
     RegisterController.$inject = [
         'UserService',
-        '$location',
+        '$state',
         '$rootScope',
         'FlashService'
     ];
 
-    function RegisterController(UserService, $location, $rootScope, FlashService) {
+    function RegisterController(UserService, $state, $rootScope, FlashService) {
         var vm = this;
 
         vm.register = register;
@@ -24,7 +24,7 @@
             UserService.Create(vm.user, function (response) {
                 if (response.success) {
                     FlashService.Success('Registro exitoso', true);
-                    $location.path('/login');
+                    $state.go('login');
                 } else {
                     FlashService.Error('No se pudo registrar usuario');
                     vm.dataLoading = false;

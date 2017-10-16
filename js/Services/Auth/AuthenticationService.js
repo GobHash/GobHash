@@ -5,8 +5,8 @@
         .module('gobhash')
         .factory('AuthenticationService', AuthenticationService);
 
-    AuthenticationService.$inject = ['$http', '$cookies', '$rootScope', '$timeout', 'UserService', '$location'];
-    function AuthenticationService($http, $cookies, $rootScope, $timeout, UserService, $location) {
+    AuthenticationService.$inject = ['$http', '$cookies', '$rootScope', '$timeout', 'UserService', '$state'];
+    function AuthenticationService($http, $cookies, $rootScope, $timeout, UserService, $state) {
         var service = {};
         // var apiUrl = 'https://api.gobhash.com/v1';
         var apiUrl = 'https://api-dev.gobhash.com/v1';
@@ -57,7 +57,7 @@
 
         function Logout() {
             $http.defaults.headers.common['Authorization'] = '';
-            $location.path('/auth/login');
+            $state.go('login');
         }
 
         function handleSuccess(res, callback) {
