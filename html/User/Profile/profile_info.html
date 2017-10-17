@@ -14,7 +14,7 @@
     <input type="text" name="biography" id="biography" class="form-control" ng-model="vm.profile.biography"/>
 </div>
 
-<div class="margiv-top-10">
+<div ng-if="!vm.noactions" class="margiv-top-10">
     <button type="submit" class="btn btn-menu"> Guardar cambios </button>
     <a href="javascript:;" class="btn default"> Cancelar </a>
 </div>

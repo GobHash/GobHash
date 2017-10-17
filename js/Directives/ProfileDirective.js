@@ -15,7 +15,8 @@
             restrict: 'EA',
             templateUrl: 'html/User/Profile/profile_info.html',
             scope: {
-                profile: '=profile'
+                profile: '=profile',
+                noactions: '=?'
             }
         };
 
