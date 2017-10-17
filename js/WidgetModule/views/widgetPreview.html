@@ -1,0 +1,21 @@
+<div block-ui="vmWidgetPreview.previewBlock">
+    <div class="modal-header">
+        <button type="button" class="close" ui-sref="widgetPreview">&times;</button>
+        <h4 class="modal-title" id="exampleModalLabel">Creando Widget</h4>
+    </div>
+    <div class="modal-body" >
+        <div ng-if="vmWidgetPreview.widgetType == 1">
+            <canvas id="pie" class="chart chart-pie" chart-data="vmWidgetPreview.widgetValues" chart-labels="vmWidgetPreview.widgetLabels" chart-options="options" height="327" width="655" ></canvas>
+            
+        </div>
+        <div ng-if="vmWidgetPreview.widgetType == 2">
+            <canvas id="bar" class="chart chart-bar" chart-data="vmWidgetPreview.widgetValues" chart-labels="vmWidgetPreview.widgetLabels"></canvas>
+        </div>
+        <div ng-if="vmWidgetPreview.widgetType == 3">
+            <canvas id="line" class="chart chart-line" chart-data="vmWidgetPreview.widgetValues" chart-labels="vmWidgetPreview.widgetLabels" chart-options="options" height="327" width="655" ></canvas>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button  type="button" class="btn btn-default" ng-click="vmWidgetPreview.stateBack()">Ok</button>
+    </div>
+</div>
