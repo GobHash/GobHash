@@ -4,8 +4,9 @@
   "description": "Megaproyecto UVG 2017",
   "main": "index.js",
   "engine": "node >=0.6.x",  
-  "scripts": {  
-    "start": "node server.js"  
+  "scripts": {
+    "start": "node server.js",
+    "postinstall" : "git submodule init && git submodule update",
   },  
   "repository": {
     "type": "git",
