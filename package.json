@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/fitocs452/GobHash.git"
+    "url": "git+https://github.com/GobHash/GobHash.git"
   },
   "keywords": [
     "AngularJS",
@@ -23,9 +23,9 @@
   "author": "Adolfo Morales",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/fitocs452/GobHash/issues"
+    "url": "https://github.com/GobHash/GobHash/issues"
   },
-  "homepage": "https://github.com/fitocs452/GobHash#readme",
+  "homepage": "https://github.com/GobHash/GobHash#readme",
   "devDependencies": {
     "angular-http-server": "^1.3.1"
   },
