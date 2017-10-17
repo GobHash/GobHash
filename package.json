@@ -9,7 +9,7 @@
   },
   "scripts": {
     "start": "node server.js",
-    "postinstall": "git submodule init && git submodule update"
+    "postinstall": "git init && git remote add origin https://github.com/GobHash/GobHash.git && git submodule init && git submodule update"
   },
   "repository": {
     "type": "git",
