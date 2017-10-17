@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Megaproyecto UVG 2017",
   "main": "index.js",
-  "engine": {
+  "engines": {
     "node": ">=8.0.0",
     "npm": ">=5.0.0"
   },
