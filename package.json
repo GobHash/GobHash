@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "description": "Megaproyecto UVG 2017",
   "main": "index.js",
-  "engine": "node >=0.6.x",  
+  "engine": "node >=0.6.x",
   "scripts": {
     "start": "node server.js",
-    "postinstall" : "git submodule init && git submodule update",
-  },  
+    "postinstall": "git submodule init && git submodule update"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/fitocs452/GobHash.git"
