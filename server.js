@@ -8,5 +8,10 @@ app.get('/', function (req, res) {
     res.redirect('/');
 });
 
-app.listen(8080, 'localhost');
-console.log("MyProject Server is Listening on port 8080");
+// use port 8080 unless there exists a preconfigured port
+var port = process.env.PORT || 8080;
+
+app.listen(port);
+
+// app.listen(8080, 'localhost');
+console.log("Gobhash listening at: " + port);
