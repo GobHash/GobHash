@@ -13,6 +13,8 @@
         var service = {};
 
         service.GetProfile = GetProfile;
+        service.GetProfileById = GetProfileById;
+        service.FollowUser = FollowUser;
         service.UpdateProfile = UpdateProfile;
         service.GetProfilePicture = GetProfilePicture;
         service.GetProfileStats = GetProfileStats;
@@ -20,6 +22,34 @@
         service.UpdateProfilePassword = UpdateProfilePassword;
 
         return service;
+
+        function FollowUser(username, callback) {
+            return $http.post(
+                    apiUrl + '/users/follow',
+                    {
+                        username: username
+                    }
+                )
+                .then(function (response) {
+                    handleSuccess(response, callback);
+                })
+                .catch(function (error) {
+                    handleError(error, callback);
+                }
+            );
+        }
+
+        // Obtener perfil del usuario por id
+        function GetProfileById(id, callback) {
+            return $http.get(apiUrl + '/users/' + id)
+                .then(function (response) {
+                    handleSuccess(response, callback);
+                })
+                .catch(function (error) {
+                    handleError(error, callback);
+                }
+            );
+        }
 
         // Obtener perfil del usuario
         function GetProfile(callback) {

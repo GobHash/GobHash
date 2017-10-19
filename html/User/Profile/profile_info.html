@@ -6,15 +6,17 @@
 
 <div class="form-group" ng-class="{ 'has-error': form.occupation.$dirty }">
     <label for="occupation">Ocupación</label>
-    <input type="text" name="occupation" id="occupation" class="form-control" ng-model="vm.profile.occupation"/>
+    <input ng-if="vm.noactions" type="text" name="occupation" id="occupation" class="form-control" ng-model="vm.profile.occupation" disabled />
+    <input ng-if="!vm.noactions" type="text" name="occupation" id="occupation" class="form-control" ng-model="vm.profile.occupation"/>
 </div>
 
 <div class="form-group" ng-class="{ 'has-error': form.biography.$dirty }">
     <label for="biography">Acerca de ti</label>
-    <input type="text" name="biography" id="biography" class="form-control" ng-model="vm.profile.biography"/>
+    <input ng-if="vm.noactions" type="text" name="biography" id="biography" class="form-control" ng-model="vm.profile.biography" disabled />
+    <input ng-if="!vm.noactions" type="text" name="biography" id="biography" class="form-control" ng-model="vm.profile.biography"/>
 </div>
 
-<div class="margiv-top-10">
+<div ng-if="!vm.noactions" class="margiv-top-10">
     <button type="submit" class="btn btn-menu"> Guardar cambios </button>
     <a href="javascript:;" class="btn default"> Cancelar </a>
 </div>

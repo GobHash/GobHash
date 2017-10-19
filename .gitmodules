@@ -1,0 +1,3 @@
+[submodule "js/WidgetModule"]
+	path = js/WidgetModule
+	url = https://github.com/GobHash/Widgets-Angular.git

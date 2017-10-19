@@ -7,7 +7,7 @@
                 <div class="portlet light profile-sidebar-portlet ">
                     <!-- SIDEBAR USERPIC -->
                     <div class="profile-userpic">
-                        <img src={{vm.profilePicture}} id="profile-image" class="img-responsive" height="250px" width="250px"> </div>
+                        <img src={{vm.profileData.picture.location}} id="profile-image" class="img-responsive" height="250px" width="250px"> </div>
                     <!-- END SIDEBAR USERPIC -->
                     <!-- SIDEBAR USER TITLE -->
                     <div class="profile-usertitle">
@@ -16,7 +16,7 @@
                     <!-- END SIDEBAR USER TITLE -->
                     <!-- SIDEBAR BUTTONS -->
                     <div class="profile-userbuttons">
-                        <!-- <button type="button" class="btn btn-menu btn-sm">Follow</button> -->
+                        <a ng-click="vm.FollowUser()" class="btn btn-menu btn-sm">Follow</a>
                     </div>
                     <!-- END SIDEBAR BUTTONS -->
                     <!-- SIDEBAR MENU -->
@@ -58,42 +58,9 @@
                                     <i class="icon-globe theme-font hide"></i>
                                     <span class="caption-subject font-dark bold uppercase">Perfil</span>
                                 </div>
-                                <ul class="nav nav-tabs">
-                                    <li ng-class="vm.actualTab===1 ? 'active under' : 'under'">
-                                        <a ng-click="vm.ChangeTab(1)">Información personal</a>
-                                    </li>
-                                    <li ng-class="vm.actualTab===2 ? 'active under' : 'under'">
-                                        <a ng-click="vm.ChangeTab(2)">Change Avatar</a>
-                                    </li>
-                                    <li ng-class="vm.actualTab===3 ? 'active under' : 'under'">
-                                        <a ng-click="vm.ChangeTab(3)">Contraseña</a>
-                                    </li>
-                                </ul>
                             </div>
                             <div class="portlet-body">
-                                <div class="tab-content">
-                                    <!-- PERSONAL INFO TAB -->
-                                    <div class="tab-pane active">
-                                        <form ng-if="vm.actualTab===1" role="form" ng-submit="vm.UpdateProfileData()">
-                                            <profile-data profile=vm.profileData></profile-data>
-                                        </form>
-                                        <form ng-if="vm.actualTab===3" role="form" ng-submit="vm.ChangePassword()">
-                                            <password-change data=vm.passwordData></password-change>
-                                        </form>
-
-                                        <form ng-show="vm.actualTab===2" class="form-group" role="form">
-                                            <!-- <div><input type="file" id="fileInput" /></div> -->
-                                            <input type="file" ngf-select ng-model="vm.newProfilePicture" name="file"
-                                                 accept="image/*" ngf-max-size="2MB" required
-                                                 ngf-model-invalid="errorFile">
-                                            <img ngf-thumbnail="vm.newProfilePicture" class="img-responsive">
-                                            <br>
-                                            <div class="margin-top-10">
-                                                <button ng-click="vm.UpdateProfilePicture()" class="btn btn-menu"> Cambiar imagen </button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
+                                <profile-data profile=vm.profileData noactions="true"></profile-data>
                             </div>
                         </div>
                     </div>

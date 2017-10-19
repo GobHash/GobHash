@@ -74,6 +74,14 @@
                 templateUrl: 'html/User/profile.html'
             })
 
+            .state('show_profile', {
+                parent: 'index',
+                url: 'user/profile/{userId}',
+                controller: 'ShowProfileController',
+                controllerAs: 'vm',
+                templateUrl: 'html/User/Profile/show_profile.html'
+            })
+
             .state('feed', {
                 parent: 'index',
                 url: 'feed',

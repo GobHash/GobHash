@@ -44,22 +44,18 @@
         function CheckDashboardState() {
             if ('main' in vm.postData.dashboard) {
                 vm.dashboard.hasMain = true;
-                console.log('has main graph');
             }
 
             if ('first_submain' in vm.postData.dashboard) {
                 vm.dashboard.hasFirst = true;
-                console.log('has first graph');
             }
 
             if ('second_submain' in vm.postData.dashboard) {
                 vm.dashboard.hasSecond = true;
-                console.log('has second graph');
             }
 
             if ('third_submain' in vm.postData.dashboard) {
                 vm.dashboard.hasThird = true;
-                console.log('has third graph');
             }
         }
 
@@ -71,7 +67,13 @@
                 },
                 function(response) {
                     if (response.success) {
-                        console.log('Comentario agregado');
+                        vm.postData.comments.push({
+                            content: vm.new_comment,
+                            user: {
+                                username: vm.username
+                            }
+                        });
+                        vm.new_comment = '';
                     } else {
                         console.log('Comentario NO agregado');
                     }
