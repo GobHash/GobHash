@@ -11,6 +11,7 @@
                 'ui.bootstrap',
                 'chart.js',
                 'ngFileUpload',
+                'ngWebsocket',
                 'gobhash',
                 'Widgets',
                 'blockUI'
