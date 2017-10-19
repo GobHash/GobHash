@@ -3,101 +3,109 @@
         <button type="button" ng-click="vmWidgetFilter.reset()" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title" id="exampleModalLabel">Seleccionar Filtros</h4>
     </div>
-    <div class="modal-body filter-modal">
-        <label for="recipient-name">Filtros</label>
-        <button class="btn btn-primary btn-next pull-rigth" ng-click="vmWidgetFilter.addFilter()"><span class="glyphicon glyphicon-plus"></span></button>        
-            
-        <form>
-        <div class="form-group">
-        
-            
-            <div class="row filter" ng-repeat="filter in vmWidgetFilter.filters">
-                <div class="col-8 col-sm-4">
-                    <select ng-change="vmWidgetFilter.getOperationsByColumnType(filter.column.type)" class="form-control" id="widget-entities" ng-model="filter.column" ng-options="item as item.display_name for item in vmWidgetFilter.filterColumns track by item.id"  ng-required="true">
-                    </select>
-                </div>
-                <div class="col-8 col-sm-2">
-                    <select class="form-control" ng-model="filter.operation" ng-options="item as item.name for item in vmWidgetFilter.operationsByType track by item.id"  ng-required="true">
-                    </select>
-                </div>
-                <div class="col-8 col-sm-3">
-                    <input type="text" class="form-control" id="value" ng-model="filter.value"></input>
-                </div>
-                <div class="col-8 col-sm-1">
-                    <button class="btn btn-primary btn-next" ng-click="vmWidgetFilter.deleteFilter(filter)"><span class="glyphicon glyphicon-remove"></span></button>
-                </div>
+    <form name="vmWidgetFilter.filterForm" ng-submit="vmWidgetFilter.stepFour()">
+        <div class="modal-body filter-modal">
+            <label for="recipient-name">Filtros</label>
+            <button class="btn btn-primary btn-next pull-rigth" ng-click="vmWidgetFilter.addFilter()"><span class="glyphicon glyphicon-plus"></span></button>        
                 
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="recipient-name">Filtro por Fecha</label>
-            <button class="btn btn-primary btn-next pull-rigth" ng-click="vmWidgetFilter.addDateFilter()"><span class="glyphicon glyphicon-plus"></span></button>        
             
-            <div class="row filter" ng-repeat="filter in vmWidgetFilter.dateFilters">
-                <div class="col-8 col-sm-3">
-                    <select class="form-control" id="widget-entities" ng-model="filter.column" ng-options="item as item.display_name for item in vmWidgetFilter.dateColumns track by item.id"  ng-required="true">
-                    </select>
+            <div class="form-group">
+                <div class="row filter" ng-repeat="filter in vmWidgetFilter.filters">
+                    <div class="form-group col-8 col-sm-4" ng-class="{ 'has-error' : (vmWidgetFilter.filterForm.$submitted && (vmWidgetFilter.filterForm.column.$untouched || vmWidgetFilter.filterForm.column.$invalid))  || (vmWidgetFilter.filterForm.column.$invalid && !vmWidgetFilter.filterForm.column.$pristine) }">
+                        <select name="column" class="form-control" id="widget-entities" ng-model="filter.column" ng-options="item as item.display_name for item in vmWidgetFilter.filterColumns track by item.id"  ng-required="true">
+                        </select>
+                        <p ng-show="(vmWidgetFilter.filterForm.$submitted && (vmWidgetFilter.filterForm.column.$untouched || vmWidgetFilter.filterForm.column.$invalid))  || (vmWidgetFilter.filterForm.column.$invalid && !vmWidgetFilter.filterForm.column.$pristine)" class="help-block">Por favor elija una columna</p>
+                    </div>
+                    <div ng-if="filter.column.type == 1" class="col-8 col-sm-2" ng-class="{ 'has-error' : (vmWidgetFilter.filterForm.$submitted && (vmWidgetFilter.filterForm.operation.$untouched || vmWidgetFilter.filterForm.operation.$invalid))  || (vmWidgetFilter.filterForm.operation.$invalid && !vmWidgetFilter.filterForm.operation.$pristine) }">
+                        <select name="operation" class="form-control" ng-model="filter.operation" ng-options="item as item.name for item in vmWidgetFilter.stringOperations track by item.id"  ng-required="true">
+                        </select>
+                        <p ng-show="(vmWidgetFilter.filterForm.$submitted && (vmWidgetFilter.filterForm.operation.$untouched || vmWidgetFilter.filterForm.operation.$invalid))  || (vmWidgetFilter.filterForm.operation.$invalid && !vmWidgetFilter.filterForm.operation.$pristine)" class="help-block">Por favor elija una operacion</p>
+                    </div>
+                    <div ng-if="filter.column.type == 4" class="col-8 col-sm-2" ng-class="{ 'has-error' : (vmWidgetFilter.filterForm.$submitted && (vmWidgetFilter.filterForm.operation.$untouched || vmWidgetFilter.filterForm.operation.$invalid))  || (vmWidgetFilter.filterForm.operation.$invalid && !vmWidgetFilter.filterForm.operation.$pristine) }">
+                        <select name="operation" class="form-control" ng-model="filter.operation" ng-options="item as item.name for item in vmWidgetFilter.intOperations track by item.id"  ng-required="true">
+                        </select>
+                        <p ng-show="(vmWidgetFilter.filterForm.$submitted && (vmWidgetFilter.filterForm.operation.$untouched || vmWidgetFilter.filterForm.operation.$invalid))  || (vmWidgetFilter.filterForm.operation.$invalid && !vmWidgetFilter.filterForm.operation.$pristine)" class="help-block">Por favor elija una operacion</p>
+                    </div>
+                    <div class="col-8 col-sm-3" ng-class="{ 'has-error' : (vmWidgetFilter.filterForm.$submitted && vmWidgetFilter.filterForm.value.$untouched)  || ( vmWidgetFilter.filterForm.value.$invalid && !vmWidgetFilter.filterForm.value.$pristine ) }">
+                        <input type="text" name="value" class="form-control" id="value" ng-model="filter.value" ng-required="true"></input>
+                        <p ng-show="(vmWidgetFilter.filterForm.$submitted && vmWidgetFilter.filterForm.value.$untouched)  || ( vmWidgetFilter.filterForm.value.$invalid && !vmWidgetFilter.filterForm.value.$pristine )" class="help-block">Por favor ingrese algun valor</p>
+                    </div>
+                    <div class="col-8 col-sm-1">
+                        <button class="btn btn-primary btn-next" ng-click="vmWidgetFilter.deleteFilter(filter)"><span class="glyphicon glyphicon-remove"></span></button>
+                    </div>
+                    
                 </div>
-                <div class="col col-lg-1" ng-if="filter.operation.name == 'Entre'  ">
-                    <span class="input-group-btn">
-                    <button type="button" class="btn btn-default" ng-click="vmWidgetFilter.dpeOpen = !vmWidgetFilter.dpeOpen">
-                        <i class="glyphicon glyphicon-calendar"></i>
-                    </button>
-                    </span>
-                </div>
-                <div ng-if="filter.operation.name == 'Entre' " class="col col-lg-1" ng-disabled="true">
-                    <input type="text" 
-                    name="date" 
-                    class="form-control" 
-                    id="date" 
-                    uib-datepicker-popup="{{vmWidgetFilter.dpeFormat}}" 
-                    placeholder="HASTA {{vmWidgetFilter.dpeFormat}}" 
-                    ng-model="filter.date2" 
-                    is-open="vmWidgetFilter.dpeOpen" 
-                    datepicker-options="vmWidgetFilter.dpeOptions" 
-                    close-text="Close" ng-change="vmWidgetFilter.validateDate()">
-                </div>
-                <div class="col-4 col-lg-2">
-                    <select class="form-control" 
-                    ng-model="filter.operation" 
-                    ng-options="item as item.name for item in vmWidgetFilter.operationsDate track by item.id"  
-                    ng-required="true">
-                    </select>
-                </div>
-                <div class="col col-lg-1">
-                    <span class="input-group-btn">
-                    <button type="button" class="btn btn-default" ng-click="vmWidgetFilter.dpOpen = !vmWidgetFilter.dpOpen"><i class="glyphicon glyphicon-calendar"></i></button>
-                    </span>
-                </div>
-                <div class="col col-lg-2" ng-disabled="true">
-                    <input type="text" 
-                    name="date" 
-                    class="form-control" 
-                    id="date" 
-                    uib-datepicker-popup="{{vmWidgetFilter.dpFormat}}" 
-                    placeholder="DESDE {{vmWidgetFilter.dpFormat}}" 
-                    ng-model="filter.date1"
-                    is-open="vmWidgetFilter.dpOpen" 
-                    datepicker-options="vmWidgetFilter.dpOptions" 
-                    close-text="Close" ng-change="vmWidgetFilter.validateDate()">
-                </div>
+            </div>
+            <div class="form-group">
+                <label for="recipient-name">Filtro por Fecha</label>
+                <button class="btn btn-primary btn-next pull-rigth" ng-click="vmWidgetFilter.addDateFilter()"><span class="glyphicon glyphicon-plus"></span></button>        
+                
+                <div class="row filter" ng-repeat="filter in vmWidgetFilter.dateFilters">
+                    <div class="col-8 col-sm-3">
+                        <select class="form-control" id="widget-entities" ng-model="filter.column" ng-options="item as item.display_name for item in vmWidgetFilter.dateColumns track by item.id">
+                        </select>
+                    </div>
+                    <div class="col col-lg-1" ng-if="filter.operation.name == 'Entre'  ">
+                        <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vmWidgetFilter.dpeOpen = !vmWidgetFilter.dpeOpen">
+                            <i class="glyphicon glyphicon-calendar"></i>
+                        </button>
+                        </span>
+                    </div>
+                    <div ng-if="filter.operation.name == 'Entre' " class="col col-lg-1" ng-disabled="true">
+                        <input type="text" 
+                        name="date" 
+                        class="form-control" 
+                        id="date" 
+                        uib-datepicker-popup="{{vmWidgetFilter.dpeFormat}}" 
+                        placeholder="HASTA {{vmWidgetFilter.dpeFormat}}" 
+                        ng-model="filter.date2" 
+                        is-open="vmWidgetFilter.dpeOpen" 
+                        datepicker-options="vmWidgetFilter.dpeOptions" 
+                        close-text="Close" ng-change="vmWidgetFilter.validateDate()">
+                    </div>
+                    <div class="col-4 col-lg-2">
+                        <select class="form-control" 
+                        ng-model="filter.operation" 
+                        ng-options="item as item.name for item in vmWidgetFilter.operationsDate track by item.id">
+                        </select>
+                    </div>
+                    <div class="col col-lg-1">
+                        <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vmWidgetFilter.dpOpen = !vmWidgetFilter.dpOpen"><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                    </div>
+                    <div class="col col-lg-2" ng-disabled="true">
+                        <input type="text" 
+                        name="date" 
+                        class="form-control" 
+                        id="date" 
+                        uib-datepicker-popup="{{vmWidgetFilter.dpFormat}}" 
+                        placeholder="DESDE {{vmWidgetFilter.dpFormat}}" 
+                        ng-model="filter.date1"
+                        is-open="vmWidgetFilter.dpOpen" 
+                        datepicker-options="vmWidgetFilter.dpOptions" 
+                        close-text="Close" ng-change="vmWidgetFilter.validateDate()">
+                    </div>
 
-                <div class="col-8 col-sm-1">
-                    <button class="btn btn-primary btn-next" ng-click="vmWidgetFilter.deleteDateFilter(filter)"><span class="glyphicon glyphicon-remove"></span></button>
+                    <div class="col-8 col-sm-1">
+                        <button class="btn btn-primary btn-next" ng-click="vmWidgetFilter.deleteDateFilter(filter)"><span class="glyphicon glyphicon-remove"></span></button>
+                    </div>
+                    
+                    
                 </div>
-                
-                
             </div>
+            
+            
+        
         </div>
-        
-        
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default btn-next pull-left" ng-click="vmWidgetFilter.stepTree()">Atrás</button>
+            <button type="submit" class="btn btn-default btn-next pull-rigth">Previsualización</button>
+            <button type="button" class="btn btn-default btn-next pull-left" ng-click="vmWidgetFilter.reset()" >Cerrar</button>
+            <button type="button" class="btn btn-default btn-next pull-rigth" ng-click="vmWidgetFilter.save()" >Guardar</button>
+        </div>
     </form>
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-default btn-next pull-left" ng-click="vmWidgetFilter.stepTree()">Atrás</button>
-        <button type="button" class="btn btn-default btn-next pull-rigth" ng-click="vmWidgetFilter.stepFour()">Previsualización</button>
-        <button type="button" class="btn btn-default btn-next pull-left" ng-click="vmWidgetFilter.reset()" >Cerrar</button>
-        <button type="button" class="btn btn-default btn-next pull-rigth" ng-click="vmWidgetFilter.save()" >Guardar</button>
-    </div>
+    
 
 </div>

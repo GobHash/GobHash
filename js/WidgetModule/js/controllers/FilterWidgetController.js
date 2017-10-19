@@ -66,20 +66,27 @@
         vm.getFilterOperationsByType = getFilterOperationsByType;
         vm.save = save;
         vm.deleteDateFilter = deleteDateFilter;
+        vm.getIntOperations = getIntOperations;
+        vm.getStringOperations = getStringOperations;
 
         function stepFour(){
-            setFilters();
-            setDateFilter();
-            console.log(vm.definition);
-            EntitiesService.getPreviewData().then(function(data){
-                console.log("RESPONSE POST")
-                console.log(data)
-                EntitiesService.setData(data);
-                $state.go('widgetPreview');
-            }).catch(function(err){
-                console.log(err)
-            }).finally(function(){
-            });
+            if(vm.filterForm.$valid){
+                setFilters();
+                setDateFilter();
+                console.log(vm.definition);
+                EntitiesService.getPreviewData().then(function(data){
+                    console.log("RESPONSE POST")
+                    console.log(data)
+                    EntitiesService.setData(data);
+                    $state.go('widgetPreview');
+                }).catch(function(err){
+                    console.log(err)
+                }).finally(function(){
+                });
+            }
+            else{
+                vm.alert = "Por favor complete los campos necesarios";
+            }
         };
         function stepTree(){
             setFilters();
@@ -168,11 +175,21 @@
                 console.log(err);
             }).finally(function(){
                 getOperationsForDateColumns(vm.operations, 5);
+                getStringOperations(vm.operations, 1);
+                getIntOperations(vm.operations, 4)
+
             })
         }
 
         function getOperationsByColumnType(columnType){
             vm.operationsByType = EntitiesService.getOperationsByColumnType(vm.operations, columnType)
+        }
+
+        function getStringOperations(){
+            vm.stringOperations = EntitiesService.getOperationsByColumnType(vm.operations, 1)
+        }
+        function getIntOperations(){
+            vm.intOperations = EntitiesService.getOperationsByColumnType(vm.operations, 4)
         }
 
         function getColumnsForDateFilters(){
@@ -184,9 +201,24 @@
         }
 
         function save(){
-            EntitiesService.setHash();
-            $rootScope.SetGraphic();
-            $state.go("add_post");
+            if(vm.filterForm.$valid){
+                setFilters();
+                setDateFilter();
+                console.log(vm.definition);
+                EntitiesService.getPreviewData().then(function(data){
+                    console.log("RESPONSE POST")
+                    console.log(data)
+                    EntitiesService.setData(data);
+                }).catch(function(err){
+                    console.log(err)
+                }).finally(function(){
+                    EntitiesService.setHash();
+                    $rootScope.SetGraphic();
+                    $state.go("add_post");
+                });
+            }
+
+            
         }
 
     }
