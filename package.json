@@ -8,7 +8,8 @@
     "npm": ">=2.15.11"
   },
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "postinstall": "git submodule init && git submodule update"
   },
   "repository": {
     "type": "git",
@@ -49,6 +50,7 @@
     "jquery": "^3.2.1",
     "ng-file-upload": "^12.2.13",
     "oclazyload": "^1.0.9",
+    "serve-favicon": "^2.4.5",
     "socket.io": "^2.0.3",
     "ui-cropper": "^1.0.6"
   }

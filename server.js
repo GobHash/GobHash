@@ -1,8 +1,18 @@
 var express = require('express');
+<<<<<<< HEAD
+=======
+var favicon = require('serve-favicon')
+var path = require('path')
+
+>>>>>>> master
 var app = express();
 
 // app.use(express.static("public"));
 app.use(express.static(__dirname));
+<<<<<<< HEAD
+=======
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
+>>>>>>> master
 
 app.get('/', function (req, res) {
     res.redirect('/');
