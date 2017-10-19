@@ -73,10 +73,7 @@
             if(vm.filterForm.$valid){
                 setFilters();
                 setDateFilter();
-                console.log(vm.definition);
                 EntitiesService.getPreviewData().then(function(data){
-                    console.log("RESPONSE POST")
-                    console.log(data)
                     EntitiesService.setData(data);
                     $state.go('widgetPreview');
                 }).catch(function(err){
@@ -147,14 +144,12 @@
         
 
         function setFilters(){
-            console.log(vm.filters);
             FilterService.setFilters(vm.filters);
             vm.definition.filters = vm.filters;
             EntitiesService.setFilters(vm.filters);
         }
 
         function setDateFilter(){
-            console.log(vm.dateFilters);
             FilterService.setDateFilters(vm.dateFilters)
             vm.definition.dateFilters = vm.dateFilters;
             EntitiesService.setDateFilters(vm.dateFilters);
@@ -204,10 +199,7 @@
             if(vm.filterForm.$valid){
                 setFilters();
                 setDateFilter();
-                console.log(vm.definition);
                 EntitiesService.getPreviewData().then(function(data){
-                    console.log("RESPONSE POST")
-                    console.log(data)
                     EntitiesService.setData(data);
                 }).catch(function(err){
                     console.log(err)

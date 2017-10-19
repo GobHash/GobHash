@@ -226,7 +226,7 @@
 		}
 
 		function setDefinition(definition){
-			vm.definition = definition;
+			service.definition = definition;
 		}
 
 		function getColumnsForFilters(){

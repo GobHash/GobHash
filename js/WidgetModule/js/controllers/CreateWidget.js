@@ -35,7 +35,6 @@
         function stepTwo(){
             if(vm.indexForm.$valid){
                 setDefinition();
-                console.log(vm.definition);
                 $state.go('widgetEntity');
             }
             else{

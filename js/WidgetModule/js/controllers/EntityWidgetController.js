@@ -100,7 +100,6 @@
             setEntityInDefinition();
             setBaseColumnInDefinition();
             setCategory();
-            console.log(vm.columns);
             $state.go('widgetIndex');
         }
         function setCategory(){
@@ -112,7 +111,6 @@
                 setEntityInDefinition();
                 setBaseColumnInDefinition();
                 setCategory();
-                console.log(vm.definition);
                 $state.go('widgetFilter');
             }
             else{
@@ -139,7 +137,6 @@
 
         function getColumsForOperations(){
             vm.operationColumns = EntitiesService.getColumnsForFilters();
-            console.log(vm.operationColumns);
         }
 
         function getStringsOperations(){
@@ -154,7 +151,6 @@
             EntitiesService.reset();
             $state.go("add_post")
         }
-        console.log(vm.definition);
 
     }
     
