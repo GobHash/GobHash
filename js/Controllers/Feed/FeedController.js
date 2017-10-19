@@ -5,8 +5,8 @@
         .module('gobhash')
         .controller('FeedController', FeedController);
 
-    FeedController.$inject = ['$scope', 'FeedService', '$websocket', '$rootScope'];
-    function FeedController($scope, FeedService, $websocket, $rootScope) {
+    FeedController.$inject = ['$scope', 'FeedService', '$rootScope'];
+    function FeedController($scope, FeedService, $rootScope) {
         let vm = this;
         $scope.UpdateHeader();
 
