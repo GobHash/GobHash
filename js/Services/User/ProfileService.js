@@ -89,7 +89,7 @@
 
         // Actualizar información del perfil
         function UpdateProfile(data, callback) {
-            return $http.post(
+            return $http.patch(
                     apiUrl + '/users/profile',
                     {
                         biography: data.biography,
@@ -124,7 +124,7 @@
 
         // Actualizar la contraseña
         function UpdateProfilePassword(data, callback) {
-            return $http.post(
+            return $http.patch(
                     apiUrl + '/users/password/update',
                     {
                       currentPassword: data.currentPassword,

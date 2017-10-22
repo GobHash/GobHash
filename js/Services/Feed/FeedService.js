@@ -19,7 +19,7 @@
 
         // Obtener los posts
         function GetPosts(callback) {
-            return $http.get(apiUrl + '/post')
+            return $http.get(apiUrl + '/posts')
                 .then(function (response) {
                     handleSuccess(response, callback);
                 })
@@ -32,7 +32,7 @@
         // Obtener un post específico
         function GetPost(id, callback) {
             return $http.get(
-                    apiUrl + '/post/' + id
+                    apiUrl + '/posts/' + id
                 )
                 .then(function (response) {
                     handleSuccess(response, callback);
@@ -45,7 +45,7 @@
 
         function AddPostComment(data, callback) {
             return $http.post(
-                    apiUrl + '/post/comment',
+                    apiUrl + '/posts/comment',
                     {
                         postId: data.postId,
                         content: data.content
