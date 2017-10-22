@@ -1,0 +1,27 @@
+{
+  "name": "widgets-angular",
+  "version": "1.0.0",
+  "description": "Gobhash widget module",
+  "main": "index.js",
+  "dependencies": {
+    "angular-chart.js": "^1.1.1",
+    "chart.js": "^2.6.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GobHash/Widgets-Angular.git"
+  },
+  "keywords": [
+    "Gobhash"
+  ],
+  "author": "William Fuentes",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GobHash/Widgets-Angular/issues"
+  },
+  "homepage": "https://github.com/GobHash/Widgets-Angular#readme"
+}

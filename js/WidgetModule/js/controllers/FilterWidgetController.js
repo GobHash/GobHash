@@ -124,8 +124,8 @@
         }
 
         function reset(){
-            vm.definition = {};
-            EntitiesService.setDefinition(vm.definition);
+            
+            EntitiesService.reset();
             $state.go("add_post");
         }
 
@@ -206,6 +206,7 @@
                 }).finally(function(){
                     EntitiesService.setHash();
                     $rootScope.SetGraphic();
+                    EntitiesService.reset();
                     $state.go("add_post");
                 });
             }

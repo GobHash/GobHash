@@ -6,25 +6,25 @@
     <form name="vmWidgetFilter.filterForm" ng-submit="vmWidgetFilter.stepFour()">
         <div class="modal-body filter-modal">
             <label for="recipient-name">Filtros</label>
-            <button class="btn btn-primary btn-next pull-rigth" ng-click="vmWidgetFilter.addFilter()"><span class="glyphicon glyphicon-plus"></span></button>        
+            <button type="button" class="btn btn-primary btn-next pull-rigth" ng-click="vmWidgetFilter.addFilter()"><span class="glyphicon glyphicon-plus"></span></button>        
                 
             
             <div class="form-group">
                 <div class="row filter" ng-repeat="filter in vmWidgetFilter.filters">
-                    <div class="form-group col-8 col-sm-4" ng-class="{ 'has-error' : (vmWidgetFilter.filterForm.$submitted && (vmWidgetFilter.filterForm.column.$untouched || vmWidgetFilter.filterForm.column.$invalid))  || (vmWidgetFilter.filterForm.column.$invalid && !vmWidgetFilter.filterForm.column.$pristine) }">
+                    <div class="form-group col-8 col-sm-4" ng-class="{ 'has-error' : (vmWidgetFilter.filterForm.$submitted && vmWidgetFilter.filterForm.column.$untouched)  || (vmWidgetFilter.filterForm.column.$invalid && !vmWidgetFilter.filterForm.column.$pristine) }">
                         <select name="column" class="form-control" id="widget-entities" ng-model="filter.column" ng-options="item as item.display_name for item in vmWidgetFilter.filterColumns track by item.id"  ng-required="true">
                         </select>
-                        <p ng-show="(vmWidgetFilter.filterForm.$submitted && (vmWidgetFilter.filterForm.column.$untouched || vmWidgetFilter.filterForm.column.$invalid))  || (vmWidgetFilter.filterForm.column.$invalid && !vmWidgetFilter.filterForm.column.$pristine)" class="help-block">Por favor elija una columna</p>
+                        <p ng-show="(vmWidgetFilter.filterForm.$submitted && vmWidgetFilter.filterForm.column.$untouched)  || (vmWidgetFilter.filterForm.column.$invalid && !vmWidgetFilter.filterForm.column.$pristine)" class="help-block">Por favor elija una columna</p>
                     </div>
-                    <div ng-if="filter.column.type == 1" class="col-8 col-sm-2" ng-class="{ 'has-error' : (vmWidgetFilter.filterForm.$submitted && (vmWidgetFilter.filterForm.operation.$untouched || vmWidgetFilter.filterForm.operation.$invalid))  || (vmWidgetFilter.filterForm.operation.$invalid && !vmWidgetFilter.filterForm.operation.$pristine) }">
+                    <div ng-if="filter.column.type == 1" class="col-8 col-sm-2" ng-class="{ 'has-error' : (vmWidgetFilter.filterForm.$submitted && vmWidgetFilter.filterForm.operation.$untouched)  || (vmWidgetFilter.filterForm.operation.$invalid && !vmWidgetFilter.filterForm.operation.$pristine) }">
                         <select name="operation" class="form-control" ng-model="filter.operation" ng-options="item as item.name for item in vmWidgetFilter.stringOperations track by item.id"  ng-required="true">
                         </select>
-                        <p ng-show="(vmWidgetFilter.filterForm.$submitted && (vmWidgetFilter.filterForm.operation.$untouched || vmWidgetFilter.filterForm.operation.$invalid))  || (vmWidgetFilter.filterForm.operation.$invalid && !vmWidgetFilter.filterForm.operation.$pristine)" class="help-block">Por favor elija una operacion</p>
+                        <p ng-show="(vmWidgetFilter.filterForm.$submitted && vmWidgetFilter.filterForm.operation.$untouched)  || (vmWidgetFilter.filterForm.operation.$invalid && !vmWidgetFilter.filterForm.operation.$pristine)" class="help-block">Por favor elija una operacion</p>
                     </div>
-                    <div ng-if="filter.column.type == 4" class="col-8 col-sm-2" ng-class="{ 'has-error' : (vmWidgetFilter.filterForm.$submitted && (vmWidgetFilter.filterForm.operation.$untouched || vmWidgetFilter.filterForm.operation.$invalid))  || (vmWidgetFilter.filterForm.operation.$invalid && !vmWidgetFilter.filterForm.operation.$pristine) }">
+                    <div ng-if="filter.column.type == 4" class="col-8 col-sm-2" ng-class="{ 'has-error' : (vmWidgetFilter.filterForm.$submitted && vmWidgetFilter.filterForm.operation.$untouched)  || (vmWidgetFilter.filterForm.operation.$invalid && !vmWidgetFilter.filterForm.operation.$pristine) }">
                         <select name="operation" class="form-control" ng-model="filter.operation" ng-options="item as item.name for item in vmWidgetFilter.intOperations track by item.id"  ng-required="true">
                         </select>
-                        <p ng-show="(vmWidgetFilter.filterForm.$submitted && (vmWidgetFilter.filterForm.operation.$untouched || vmWidgetFilter.filterForm.operation.$invalid))  || (vmWidgetFilter.filterForm.operation.$invalid && !vmWidgetFilter.filterForm.operation.$pristine)" class="help-block">Por favor elija una operacion</p>
+                        <p ng-show="(vmWidgetFilter.filterForm.$submitted && vmWidgetFilter.filterForm.operation.$untouched)  || (vmWidgetFilter.filterForm.operation.$invalid && !vmWidgetFilter.filterForm.operation.$pristine)" class="help-block">Por favor elija una operacion</p>
                     </div>
                     <div class="col-8 col-sm-3" ng-class="{ 'has-error' : (vmWidgetFilter.filterForm.$submitted && vmWidgetFilter.filterForm.value.$untouched)  || ( vmWidgetFilter.filterForm.value.$invalid && !vmWidgetFilter.filterForm.value.$pristine ) }">
                         <input type="text" name="value" class="form-control" id="value" ng-model="filter.value" ng-required="true"></input>
@@ -38,7 +38,7 @@
             </div>
             <div class="form-group">
                 <label for="recipient-name">Filtro por Fecha</label>
-                <button class="btn btn-primary btn-next pull-rigth" ng-click="vmWidgetFilter.addDateFilter()"><span class="glyphicon glyphicon-plus"></span></button>        
+                <button type="button" class="btn btn-primary btn-next pull-rigth" ng-click="vmWidgetFilter.addDateFilter()"><span class="glyphicon glyphicon-plus"></span></button>        
                 
                 <div class="row filter" ng-repeat="filter in vmWidgetFilter.dateFilters">
                     <div class="col-8 col-sm-3">
