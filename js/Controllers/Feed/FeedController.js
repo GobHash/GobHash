@@ -58,7 +58,9 @@
             });
             vm.socket.on('update_feed', function(data) {
                 console.log(data);
-                vm.posts.unshift(data);
+                $scope.$apply(function(){
+                    vm.posts.unshift(data);
+                });
               //donde data es el post definido en el modelo Post.
             });
             vm.socket.on('disconnect', function () {
