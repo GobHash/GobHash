@@ -54,7 +54,7 @@
 
         // Recuperación de usuario confirmada
         function SendResetPassword(token, password, callback) {
-            return $http.post(
+            return $http.patch(
                     apiUrl + '/users/password/change',
                     {
                         token: token,

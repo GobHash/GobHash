@@ -18,7 +18,7 @@
         // Crear post
         function CreatePost(data, callback) {
             return $http.post(
-                    apiUrl + '/post',
+                    apiUrl + '/posts',
                     data
                 )
                .then(function (response) {
