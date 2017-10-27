@@ -8,8 +8,7 @@
     "npm": ">=2.15.11"
   },
   "scripts": {
-    "start": "node server.js",
-    "postinstall": "git submodule init && git submodule update"
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -52,6 +51,7 @@
     "oclazyload": "^1.0.9",
     "serve-favicon": "^2.4.5",
     "socket.io": "^2.0.3",
-    "ui-cropper": "^1.0.6"
+    "ui-cropper": "^1.0.6",
+    "widgets-angular": "github:GobHash/Widgets-Angular"
   }
 }
