@@ -48,6 +48,7 @@
 
         function GetPosts() {
             FeedService.GetPosts(
+                $rootScope.globals.currentUser.id,
                 function(response) {
                     vm.posts = response.response.data;
                 }

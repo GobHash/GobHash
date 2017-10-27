@@ -90,6 +90,14 @@
                 templateUrl: 'html/Feed/feed.html'
             })
 
+            .state('my_feed', {
+                parent: 'index',
+                url: 'my/feed',
+                controller: 'MyFeedController',
+                controllerAs: 'vm',
+                templateUrl: 'html/Feed/feed.html'
+            })
+
             .state('show_post', {
                 parent: 'index',
                 url: 'feed/post/{postId}',

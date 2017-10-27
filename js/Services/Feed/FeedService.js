@@ -12,14 +12,27 @@
         var service = {};
 
         service.GetPosts = GetPosts;
+        service.GetUserPosts = GetUserPosts;
         service.GetPost = GetPost;
         service.AddPostComment = AddPostComment;
 
         return service;
 
         // Obtener los posts
-        function GetPosts(callback) {
-            return $http.get(apiUrl + '/posts')
+        function GetPosts(id, callback) {
+            return $http.get(apiUrl + '/posts/feed/' + id)
+                .then(function (response) {
+                    handleSuccess(response, callback);
+                })
+                .catch(function (error) {
+                    handleError(error, callback);
+                }
+            );
+        }
+
+        // Obtener los posts de un usuario
+        function GetUserPosts(id, callback) {
+            return $http.get(apiUrl + '/posts/user/' + id)
                 .then(function (response) {
                     handleSuccess(response, callback);
                 })
