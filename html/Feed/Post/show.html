@@ -45,7 +45,7 @@
                     <label><i class="fa fa-comment fa-lg" aria-hidden="true"> Comentarios</i></label>
                 </div>
                 <div class="col-md-6 text-center">
-                    <label><i class="fa fa-hashtag fa-lg" aria-hidden="true"> 200</i></label>
+                    <a ng-click="vm.LikePost()"><i class="fa fa-hashtag fa-lg" aria-hidden="true"> {{ vm.data.likes.length }}</i></a>
                 </div>
             </div>
             <div class="col-md-4">

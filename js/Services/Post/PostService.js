@@ -13,6 +13,8 @@
 
         service.CreatePost = CreatePost;
         service.SetHeaders = SetHeaders;
+        service.LikePost = LikePost;
+        service.UserLikePostValidation = UserLikePostValidation;
 
         return service;
 
@@ -35,6 +37,36 @@
                }
             );
         }
+
+        // Like a post
+        function LikePost(id, callback) {
+            return $http.post(
+                    apiUrl + '/posts/like',
+                    {
+                        postId: id
+                    }
+                )
+               .then(function (response) {
+                    handleSuccess(response, callback);
+               })
+               .catch(function (error) {
+                    handleError(error, callback);
+               }
+            );
+        }
+
+        // Verifica si se le puede dar like a un post
+        function UserLikePostValidation(data, callback) {
+            return $http.get(apiUrl + '/posts/like/validation/' + data.postId + '/' + data.userId)
+                .then(function (response) {
+                    handleSuccess(response, callback);
+                })
+                .catch(function (error) {
+                    handleError(error, callback);
+                }
+            );
+        }
+
         // private functions
 
         function handleSuccess(res, callback) {
