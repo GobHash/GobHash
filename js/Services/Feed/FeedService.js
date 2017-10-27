@@ -5,8 +5,8 @@
         .module('gobhash')
         .factory('FeedService', FeedService);
 
-    FeedService.$inject = ['$http'];
-    function FeedService($http) {
+    FeedService.$inject = ['$http', '$cookieStore'];
+    function FeedService($http, $cookieStore) {
         // var apiUrl = 'https://api.gobhash.com/v1';
         var apiUrl = 'https://api-dev.gobhash.com/v1';
         var service = {};
@@ -15,11 +15,17 @@
         service.GetUserPosts = GetUserPosts;
         service.GetPost = GetPost;
         service.AddPostComment = AddPostComment;
+        service.SetHeaders = SetHeaders;
 
         return service;
 
+        function SetHeaders() {
+            $http.defaults.headers.common['Authorization'] = 'Bearer ' + $cookieStore.get('globals').currentUser.token;
+        }
+
         // Obtener los posts
         function GetPosts(id, callback) {
+            service.SetHeaders();
             return $http.get(apiUrl + '/posts/feed/' + id)
                 .then(function (response) {
                     handleSuccess(response, callback);
@@ -32,6 +38,7 @@
 
         // Obtener los posts de un usuario
         function GetUserPosts(id, callback) {
+            service.SetHeaders();
             return $http.get(apiUrl + '/posts/user/' + id)
                 .then(function (response) {
                     handleSuccess(response, callback);
@@ -44,6 +51,7 @@
 
         // Obtener un post específico
         function GetPost(id, callback) {
+            service.SetHeaders();
             return $http.get(
                     apiUrl + '/posts/' + id
                 )

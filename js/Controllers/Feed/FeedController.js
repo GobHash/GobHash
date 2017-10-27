@@ -5,8 +5,8 @@
         .module('gobhash')
         .controller('FeedController', FeedController);
 
-    FeedController.$inject = ['$scope', 'FeedService', '$rootScope'];
-    function FeedController($scope, FeedService, $rootScope) {
+    FeedController.$inject = ['$scope', 'FeedService', '$rootScope', '$cookieStore'];
+    function FeedController($scope, FeedService, $rootScope, $cookieStore) {
         let vm = this;
         $scope.UpdateHeader();
 
@@ -28,7 +28,7 @@
 
         function LiveFeed() {
             vm.socket.emit('authenticate', {
-              token: $rootScope.globals.currentUser.token
+              token: $cookieStore.get('globals').currentUser.token
             });
 
             vm.socket.on('authenticated', function(data) {
@@ -47,8 +47,9 @@
         }
 
         function GetPosts() {
+            FeedService.SetHeaders();
             FeedService.GetPosts(
-                $rootScope.globals.currentUser.id,
+                $cookieStore.get('globals').currentUser.id,
                 function(response) {
                     vm.posts = response.response.data;
                 }

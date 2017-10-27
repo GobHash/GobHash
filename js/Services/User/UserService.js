@@ -14,10 +14,13 @@
         service.Create = Create;
         service.ResetPassword = ResetPassword;
         service.SendResetPassword = SendResetPassword;
-        service.Update = Update;
-        service.Delete = Delete;
+        service.SetHeaders = SetHeaders;
 
         return service;
+
+        function SetHeaders() {
+            $http.defaults.headers.common['Authorization'] = 'Bearer ' + $cookieStore.get('globals').currentUser.token;
+        }
 
         // Registro de usuario
         function Create(user, callback) {
@@ -68,14 +71,6 @@
                     handleError(error, callback);
                 }
             );
-        }
-
-        function Update(user) {
-            return $http.put('/api/users/' + user.id, user).then(handleSuccess, handleError('Error updating user'));
-        }
-
-        function Delete(id) {
-            return $http.delete('/api/users/' + id).then(handleSuccess, handleError('Error deleting user'));
         }
 
         // private functions

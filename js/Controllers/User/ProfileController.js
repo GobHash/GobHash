@@ -5,8 +5,8 @@
         .module('gobhash')
         .controller('ProfileController', ProfileController);
 
-    ProfileController.$inject = ['$scope', '$rootScope', 'FlashService', 'ProfileService', 'AuthenticationService', '$timeout'];
-    function ProfileController($scope, $rootScope, FlashService, ProfileService, AuthenticationService, $timeout) {
+    ProfileController.$inject = ['$scope', '$cookieStore', 'FlashService', 'ProfileService', 'AuthenticationService', '$timeout'];
+    function ProfileController($scope, $cookieStore, FlashService, ProfileService, AuthenticationService, $timeout) {
         var vm = this;
         $scope.UpdateHeader();
 
@@ -38,7 +38,7 @@
             );
 
             ProfileService.GetProfilePicture(
-                $rootScope.globals.currentUser.id,
+                $cookieStore.get('globals').currentUser.id,
                 function(response) {
                     vm.profilePicture = response.response.data.picture.location;
                     angular.element(document.querySelector('#profile-image')).css('height', '250px');
@@ -47,7 +47,7 @@
             );
 
             ProfileService.GetProfileStats(
-                $rootScope.globals.currentUser.id,
+                $cookieStore.get('globals').currentUser.id,
                 function(response) {
                     vm.profileStats = response.response.data;
                 }

@@ -5,8 +5,8 @@
         .module('gobhash')
         .factory('ProfileService', ProfileService);
 
-    ProfileService.$inject = ['$http', '$rootScope', 'Upload'];
-    function ProfileService($http, $rootScope, Upload) {
+    ProfileService.$inject = ['$http', '$rootScope', 'Upload', '$cookieStore'];
+    function ProfileService($http, $rootScope, Upload, $cookieStore) {
         // var apiUrl = 'https://api.gobhash.com/v1';
         var apiUrl = 'https://api-dev.gobhash.com/v1';
 
@@ -20,8 +20,13 @@
         service.GetProfileStats = GetProfileStats;
         service.UpdateProfilePicture = UpdateProfilePicture;
         service.UpdateProfilePassword = UpdateProfilePassword;
+        service.SetHeaders = SetHeaders;
 
         return service;
+
+        function SetHeaders() {
+            $http.defaults.headers.common['Authorization'] = 'Bearer ' + $cookieStore.get('globals').currentUser.token;
+        }
 
         function FollowUser(username, callback) {
             return $http.post(
@@ -41,6 +46,7 @@
 
         // Obtener perfil del usuario por id
         function GetProfileById(id, callback) {
+            service.SetHeaders();
             return $http.get(apiUrl + '/users/' + id)
                 .then(function (response) {
                     handleSuccess(response, callback);
@@ -53,6 +59,7 @@
 
         // Obtener perfil del usuario
         function GetProfile(callback) {
+            service.SetHeaders();
             return $http.get(apiUrl + '/users/profile')
                 .then(function (response) {
                     handleSuccess(response, callback);
@@ -65,6 +72,7 @@
 
         // Obtener foto perfil del usuario
         function GetProfilePicture(id, callback) {
+            service.SetHeaders();
             return $http.get(apiUrl + '/users/' + id)
                 .then(function (response) {
                     handleSuccess(response, callback);
@@ -77,6 +85,7 @@
 
         // Obtener estadisticas de usuario
         function GetProfileStats(id, callback) {
+            service.SetHeaders();
             return $http.get(apiUrl + '/stats/user/' + id)
                 .then(function (response) {
                     handleSuccess(response, callback);

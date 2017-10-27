@@ -12,11 +12,17 @@
         var service = {};
 
         service.CreatePost = CreatePost;
+        service.SetHeaders = SetHeaders;
 
         return service;
 
+        function SetHeaders() {
+            $http.defaults.headers.common['Authorization'] = 'Bearer ' + $cookieStore.get('globals').currentUser.token;
+        }
+
         // Crear post
         function CreatePost(data, callback) {
+            service.SetHeaders();
             return $http.post(
                     apiUrl + '/posts',
                     data

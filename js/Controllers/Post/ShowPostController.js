@@ -5,8 +5,8 @@
         .module('gobhash')
         .controller('ShowPostController', ShowPostController);
 
-    ShowPostController.$inject = ['$rootScope','$scope', '$stateParams', '$state', 'FeedService', 'FlashService'];
-    function ShowPostController($rootScope, $scope, $stateParams, $state, FeedService, FlashService) {
+    ShowPostController.$inject = ['$cookieStore','$scope', '$stateParams', '$state', 'FeedService', 'FlashService'];
+    function ShowPostController($cookieStore, $scope, $stateParams, $state, FeedService, FlashService) {
         let vm = this;
         $scope.UpdateHeader();
 
@@ -15,7 +15,7 @@
         vm.AddComment = AddComment;
 
         vm.postData = {};
-        vm.username = $rootScope.globals.currentUser.username;
+        vm.username = $cookieStore.get('globals').currentUser.username;
         vm.new_comment = '';
 
         vm.dashboard = {

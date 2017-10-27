@@ -5,8 +5,8 @@
         .module('gobhash')
         .controller('MyFeedController', MyFeedController);
 
-    MyFeedController.$inject = ['$scope', 'FeedService', '$rootScope'];
-    function MyFeedController($scope, FeedService, $rootScope) {
+    MyFeedController.$inject = ['$scope', 'FeedService', '$rootScope', '$cookieStore'];
+    function MyFeedController($scope, FeedService, $rootScope, $cookieStore) {
         let vm = this;
         $scope.UpdateHeader();
 
@@ -17,7 +17,7 @@
         vm.GetPosts();
         function GetPosts() {
             FeedService.GetUserPosts(
-                $rootScope.globals.currentUser.id,
+                $cookieStore.get('globals').currentUser.id,
                 function(response) {
                     vm.posts = response.response.data;
                 }
