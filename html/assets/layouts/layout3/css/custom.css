@@ -265,3 +265,29 @@ li.active.under{
 .push-down {
   padding-top: 10px;
 }
+
+.header-index {
+  height: 100px !important;
+}
+
+.logo-index {
+  margin-top: 20px !important;
+}
+
+.login-view{
+  background-color: #f9b233 !important;
+  border-radius: 0px !important;
+  border: 0px;
+  margin-top: 20px !important;
+}
+
+.login-text{
+  text-align: left !important;
+  margin-top: -40px !important;
+  vertical-align: middle;
+  color: white;
+}
+
+.image-container{
+  background-image: url("https://s3.us-east-2.amazonaws.com/gobhash/meta/GobHashBackground.jpeg") !important;
+}
