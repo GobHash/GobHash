@@ -1,0 +1,11 @@
+plugins:
+  - angular
+
+globals:
+    angular: true
+
+settings:
+    angular: 1
+
+extends:
+    plugin:angular/johnpapa
