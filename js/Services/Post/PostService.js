@@ -5,8 +5,8 @@
         .module('gobhash')
         .factory('PostService', PostService);
 
-    PostService.$inject = ['$http'];
-    function PostService($http) {
+    PostService.$inject = ['$http', '$cookieStore'];
+    function PostService($http, $cookieStore) {
         // var apiUrl = 'https://api.gobhash.com/v1';
         var apiUrl = 'https://api-dev.gobhash.com/v1';
         var service = {};
