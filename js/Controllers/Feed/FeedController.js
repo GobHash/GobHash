@@ -52,6 +52,11 @@
                 $cookieStore.get('globals').currentUser.id,
                 function(response) {
                     vm.posts = response.response.data;
+                    if (vm.posts.length === 0) {
+                        FeedService.GetTopPosts(function(response) {
+                            vm.posts = response.response.data;
+                        });
+                    }
                 }
             );
         }

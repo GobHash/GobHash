@@ -16,6 +16,7 @@
         service.GetPost = GetPost;
         service.AddPostComment = AddPostComment;
         service.SetHeaders = SetHeaders;
+        service.GetTopPosts = GetTopPosts;
 
         return service;
 
@@ -27,6 +28,19 @@
         function GetPosts(id, callback) {
             service.SetHeaders();
             return $http.get(apiUrl + '/posts/feed/' + id)
+                .then(function (response) {
+                    handleSuccess(response, callback);
+                })
+                .catch(function (error) {
+                    handleError(error, callback);
+                }
+            );
+        }
+
+        // Obtener los posts
+        function GetTopPosts(callback) {
+            service.SetHeaders();
+            return $http.get(apiUrl + '/stats/posts/top/')
                 .then(function (response) {
                     handleSuccess(response, callback);
                 })
